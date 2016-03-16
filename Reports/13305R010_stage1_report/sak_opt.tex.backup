@@ -1,0 +1,36 @@
+\section{Operational Transformation}
+
+\subsection{Introduction} 
+Consistency maintenance is significant challenge in any collaborative ediotor.
+Most innovative technique for maintaing it is Operational Transformation.
+We concentarte on integrative review of all OPT techniques and 
+their issues,algorithms and achievements
+
+\subsection{Preliminaries}
+In this section some basic concepts,definitions and terminologies are introduced.
+Operational transformation technique allows two type of operations called local operations and remote opeartions.
+Local operations are nothing but operations that are genearted by local site.
+Where as remote opeartions are those operations taht are generated at some other site other than local site.
+Local opeartions are executed immediately with out any changes but remote opeartions have to be transformed against existing operations before execution.  
+\\Now we introduce some defintions.
+
+Definition 1:causal ordering relation '->'
+\\Given two operations Oa and Ob,generated at sites i and j,then Oa->Ob,iff (1)i=j and generationd of Oa happened before
+the generation of Ob or (2)i \ne j and execution of  Oa at site j happened before the generation of Ob or (3)there exists an
+opeartion Ox,such that Oa->Ox and Ox->Ob.
+
+Definition 2:dependent and Independent operations
+\\Given two operations Oa and Ob,(1)Ob is dependent on Oa iff Oa->Ob.(2)Oa and Ob are independent(or concurrent),
+expressed as Oa || Ob,iff neither Oa->Ob nor Ob->Oa
+
+
+
+
+
+
+
+
+%The report is organized as follows: Section 1 provides the background knowledge and the need for a continuous authentication model for smart phones.
+%Section 2 discusses about general experiment setup.
+%Section 3 discusses about the various approaches and their performance in authentication. Future scope is discussed in section 5. 
+%Section 6 draws the conclusions for the work done.

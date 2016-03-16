@@ -1,0 +1,78 @@
+\section{Introduction}
+
+\subsection{Background} 
+Researchers have many software options to write papers,But fewer to collaborate with others.
+Two main Reasons for less use of versioning systems are Usability problems and Need for users to resolve conflicts.
+We will compare google docs with other solutions. And also extensions to google docs to overcome its drawbacks.
+
+\subsection{Existing solutions}
+Current existing solutions for collaborative editing are-
+\begin{itemize}
+ \item E mail
+ \item CVS and SVN
+ \item GOOD
+ 
+ \subsection{E mail}
+ \begin{itemize}
+  \item  purely sequential
+ \item  conceptually simple
+ \item  others cannot contribute
+ \item  sent to a single collator
+ \end{itemize}
+ 
+ \subsection{CVS and SVN}
+ \begin{itemize}
+ \item single server maintains repository
+\item check out,check in concepts
+\item user must have client software installed
+\item resolving conflicts
+\item only text based files
+ \end{itemize}
+ 
+ 
+ 
+ \subsection{GOOD}
+ \begin{itemize}
+\item uses single XML doc
+\item can collaborate by using XML editor
+\item hides synchronization complexity
+\item built on top of CVS
+\item so still problems with CVS persists
+ \end{itemize}
+ 
+ 
+ 
+\end{itemize}
+
+\subsection{Reasons for still using older Techniques}
+\begin{itemize}
+\item Usability,update and commit concepts
+\item user accounts have to be managed
+\item need to resolve conflicts
+\end{itemize}
+
+\subsection{Problems with current authentication system}
+As the mobile devices are highly portable, authenticating the user at the beginning of the session is not sufficient. We need to monitor the user continuously throughout the session. 
+But the current authentication models do not re-authenticate the users until the session ends.  
+Also, due to the hardware limitations, the way user interacts with the smart phones is different which results in choosing weak passwords.
+
+\subsection{Continuous Vs Non-Continuous Authentication}
+As the current authentication system cannot continuously monitor the user, one way to restrict the access to the contents on the phone is to authenticate the user at regular intervals of  time. 
+But, this method is not user friendly and requires unnecessary effort from the user point of view. And also, the more number of times the user authenticates(using password or patterns), the more easy it becomes for the attacker to perform shoulder surfing and smudge attacks.
+So, the continuous authentication model should be transparent to the user and it should use such features which are very difficult to forge by the attacker and at the same time very easy for the user to remember. 
+
+\subsection{Solution}
+Behavioral based biometrics can be used to continuously authenticate the users. 
+Authentication of the user can be done transparently and without and extra processing effort from the user.
+When the behavior of the user changes considerably, we can restrict the features that can be used by the current user of the phone.
+
+\subsection{Scope of this Seminar} 
+We study the performance of behavioral biometric based authentication system for a smart phone. 
+The behavior of the user can be modeled using the finger movement data, pressure applied on the touch screen, area covered by the finger and other data that can be extracted from the user interactions with the smart phone.
+All these features can be used to identify a pattern in the user behavior which can be used to authenticate them continuously in the background. \\\\
+
+
+%The report is organized as follows: Section 1 provides the background knowledge and the need for a continuous authentication model for smart phones.
+%Section 2 discusses about general experiment setup.
+%Section 3 discusses about the various approaches and their performance in authentication. Future scope is discussed in section 5. 
+%Section 6 draws the conclusions for the work done.

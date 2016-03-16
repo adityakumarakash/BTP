@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.24pt}
+\beamer@sectionintoc {1}{User-User Comparison Matrix}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Single Label User-User Comparison Matrix}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{User correlations for set of labels}{9}{0}{1}
+\beamer@sectionintoc {2}{Label Correlations}{11}{0}{2}
+\beamer@subsectionintoc {2}{1}{Single user}{11}{0}{2}

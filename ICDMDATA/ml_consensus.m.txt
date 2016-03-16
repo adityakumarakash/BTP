@@ -1,0 +1,25 @@
+function ml_consensus(datasetname,exp_no)
+
+n_models = 10;
+pred=load(['../data/',datasetname,'_model_0.y.', int2str(exp_no)]);
+ground_truth=load(['../data/',datasetname, '.label']);
+[n_inst, n_classes] = size(pred);
+pred=zeros(n_inst, n_classes*n_models);
+for i=1:n_models
+    pred(:,(i-1)*n_classes+1:i*n_classes)=load(['../data/',datasetname,'_model_',int2str(i-1),'.y.',int2str(exp_no)]);
+end
+
+% simple averaging
+y_bar = zeros(n_inst, n_classes);
+for i=1:n_models
+    y_bar = y_bar + pred(:, (i-1)*n_classes+1:i*n_classes);
+end
+y_bar = y_bar / n_models;
+
+omega = (y_bar'*y_bar)/n_models;
+for t=1:3
+    % this is the correct way of computing y
+    y = y_bar *inv(pinv(omega)+eye(n_classes));
+    omega=(y'*y)/n_models;
+end
+dlmwrite(['../data/',datasetname, '.mlc.y.', int2str(exp_no)],y,'delimiter','\t','precision',6);

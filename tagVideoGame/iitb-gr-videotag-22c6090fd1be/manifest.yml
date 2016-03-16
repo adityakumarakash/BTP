@@ -1,0 +1,10 @@
+---
+applications:
+- name: vGameP
+  memory: 1024M
+  host: vGameP
+  domain: eu-gb.mybluemix.net
+  env: {
+    }
+  services: {
+    }

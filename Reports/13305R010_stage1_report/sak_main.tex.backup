@@ -1,0 +1,147 @@
+\documentclass[12pt]{article}
+\usepackage{a4wide}
+\usepackage{anysize}
+\usepackage{latexsym}
+\usepackage{algorithmic}
+\usepackage{amssymb}
+\usepackage{epsfig}
+%\usepackage{psfig}
+%\usepackage{tabls}
+\usepackage{multicol}
+\usepackage[dvips]{color}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage[section]{placeins}
+\usepackage{graphics}
+
+
+\usepackage{graphicx} 
+
+%\usepackage[T1]{fontenc}
+
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\marginsize{1.5cm}{1.5cm}{1.5cm}{1.5cm}
+\def\baselinestretch{1}                          
+\begin{document}
+%\baselineskip 20pt
+%The definitions
+\def\title{Collaborative Editing}
+\def\what{M. Tech. Seminar Report}
+\def\degree{Master~of~Technology}
+\def\who{V Sai Saketh Ram}
+\def\roll{13305R010}
+\def\guide{Prof. Ganesh Ramakrishnan}
+% \titlpage
+\begin{center}
+\vspace{0pt plus 2fil}
+{\LARGE \bf \title}\\ 
+\vspace{0pt plus 0.7fil}  
+{\bf \what}\\
+\vspace{0pt plus 0.3fil}
+Submitted in partial fulfillment of the requirements\\
+for the degree of\\
+\vspace{0pt plus 0.2fil}
+{\bf \degree}\\
+\vspace{0pt plus 0.5fil}
+by\\ 
+\vspace{0pt plus 0.2fil}
+{\bf \who}\\
+\vspace{0pt plus 0.05fil}
+{\bf Roll No: \roll} \\
+\vspace{0pt plus 0.5fil}
+under the guidance of\\
+\vspace{0pt plus 0.2fil}
+{\bf \guide}\\
+\vspace{0pt plus 2fil}
+
+
+
+\begin{figure}[h]
+\centerline{\epsfig{figure=iitblogo.jpg,width=5in,height=5in}}
+\end{figure}
+
+
+
+
+
+\vspace{0pt plus 2fil}
+Department of Computer Science and Engineering \\ 
+Indian Institute of Technology, Bombay \\ 
+Mumbai\\
+\vspace{0pt plus 1fil}
+\today \\
+\end{center}
+\def\bsq{\begin{flushright} $\blacksquare$\\ \end{flushright}}
+\def\tab{\hspace{5mm}}
+\newpage
+%The stuff
+\pagenumbering{roman}
+\begingroup\def\thispagestyle#1{}\def\baselinestretch{1.5}\tableofcontents\endgroup     
+\newpage
+\input{sak_abstract.tex}
+\newpage
+\pagenumbering{arabic}
+
+\input{sak_introduction.tex}
+%\newpage
+
+%\newpage
+\input{sak_opt.tex}
+%\input{future.tex}
+%\newpage
+\input{sak_conclusions.tex}
+
+\newpage
+\section*{Acknowledgements}
+I would like to thank my guide, Prof. Ganesh Ramakrishnan for the consistent directions he has fed into my work.
+
+\pagestyle{empty}
+\bibliographystyle{amsplain}
+\nocite{*}
+%\bibliography{database}
+
+
+
+\begin{thebibliography}{9}
+\bibitem{1998} 
+Chengzheng Sun,Clarence (skip) Ellis.
+\textit{Operational Transformation in Real-Time Group Editor:Issues,Algorithms and Achievemnts.}
+Proceeding
+CSCW '98 Proceedings of the 1998 ACM conference on Computer supported cooperative work
+Pages 59-68 
+
+  \bibitem{2003}
+    Claudia-Lavinia Ignat,Moria C.Norrie.
+    \textit{ Customizable Collaborative Editor
+Relying on treeOPT Algorithm.}
+Proceeding
+ECSCW'03 Proceedings of the eighth conference on European Conference on Computer Supported Cooperative Work
+Pages 315-334 
+
+  \bibitem{2006}
+Stijn Dekeyser,Richard Watson.
+    \textit{ Extending Google Docs to collaborate on Research Papers}
+\end{thebibliography}
+ 
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

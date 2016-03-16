@@ -1,0 +1,98 @@
+Here is some analysis over the tags obtained from BGCM model -
+
+Average Correlation = 0.26263495380626206 , a positive correlation with the ordering obtained from tf-idf, Looks good.
+
+
+Facts supporting models ability - 
+
+
+The set of tags for the videos below show that tf-idf is capable of only allocating tags
+which are given by users.
+BGCM here provides additional tags which seems related to the tags given by tf-idf. Thus related tags not missed.
+
+------------------------------------------------------------
+
+Video - guh7i7tHeZk
+Tags as per consensus learning - 
+(ScienCe,0.49) (Technology,0.26) (Play & Win,0.26) 
+Tags as per tf-idf - 
+(ScienCe,1) 
+Correlation = 0.6666666666666666
+
+Video - mtg9p6A6xnY
+Tags as per consensus learning - 
+(Element 13,0.41) (Periodic Table,0.36) (Chemistry,0.23) 
+Tags as per tf-idf - 
+(Element 13,0.54) (Periodic Table,0.46) 
+Correlation = 1.0
+
+Video - w2Qk-jz_tWc
+Tags as per consensus learning - 
+(Animals,0.38) (Irrigation,0.15) (Crops,0.15) (Food,0.15) (Farming,0.15) 
+Tags as per tf-idf - 
+(Animals,1) 
+Correlation = 0.4
+
+
+Video - gbArE5dv0W4
+Tags as per consensus learning - 
+(Apple,0.62) (Apple (company),0.38) 
+Tags as per tf-idf - 
+(Apple,1) 
+Correlation = 1.0
+
+
+
+------------------------------------------------------------
+
+The tag set below show the distribution of tag scores are similar to that of tf-idf. Also BGCM did not cut on number of relevant tags.
+This could be because of sparse and less data. But nevertheless a point to note.
+
+------------------------------------------------------------
+
+Video - dC_2WXyORGA
+Tags as per consensus learning - 
+(Temperature,0.05) (Tempe Normal School,0.05) (Climate Change,0.05) (Climate Change Convention,0.05) (Green house gas,0.05) (Green (color),0.05) (Climate activity,0.05) (Climate alarmism,0.05) (Climate canary,0.05) (Climate Change 2007,0.05) (Climate Change 1995,0.05) (Hot water,0.05) (Green house,0.05) (Climate,0.05) (Person,0.05) (Tutor,0.05) (Sun,0.04) (Energy,0.04) (Planet,0.02) (EartH,0.02) (Core (geology),0.02) (Sun (name),0.02) 
+Tags as per tf-idf - 
+(Person,0.06) (Tutor,0.06) (Climate Change 2007,0.06) (Hot water,0.06) (Green house,0.06) (Climate,0.06) (Climate activity,0.06) (Climate alarmism,0.06) (Climate canary,0.06) (Climate Change Convention,0.06) (Green house gas,0.06) (Temperature,0.06) (Tempe Normal School,0.06) (Climate Change,0.06) (Climate Change 1995,0.05) (Green (color),0.05) (Sun,0.05) (Energy,0.05) 
+Correlation = 0.1774891774891775
+
+
+Video - MmhNk-zRJcU
+Tags as per consensus learning - 
+(Shakespeare,0.4) (Number,0.2) (Sonnets,0.2) (Victorian Age,0.2) 
+Tags as per tf-idf - 
+(Shakespeare,0.4) (Number,0.2) (Sonnets,0.2) (Victorian Age,0.2) 
+Correlation = 1.0
+
+
+
+------------------------------------------------------------
+
+These tag set show both new tags emerging as well as emerging of unrelated tags because 
+of users tagging irrelevant tags with relevant tags as well.
+Not so good from game's perspective if users go on to give irrelevant tags.
+
+------------------------------------------------------------
+
+Video - 649iUqrOKuE
+Tags as per consensus learning - 
+(Big data,0.28) (CERN,0.21) (Data storage,0.15) (Cloud Computing,0.15) (Tag (graffiti),0.14) (Tag (HTML),0.07) 
+Tags as per tf-idf - 
+(Big data,1) 
+Correlation = 0.3333333333333333
+
+Video - z-w81QtY0ek
+Tags as per consensus learning - 
+(Big data,0.28) (CERN,0.21) (Data storage,0.15) (Cloud Computing,0.15) (Tag (graffiti),0.14) (Tag (HTML),0.07) 
+Tags as per tf-idf - 
+(Big data,1) 
+Correlation = 0.3333333333333333
+
+
+Video - mFm3yA1nslE
+Tags as per consensus learning - 
+(Tag (graffiti),0.35) (Tag (HTML),0.18) (Big data,0.17) (CERN,0.12) (Data storage,0.09) (Cloud Computing,0.09) 
+Tags as per tf-idf - 
+(Tag (graffiti),0.55) (Tag (HTML),0.27) (Big data,0.18) 
+Correlation = 0.8

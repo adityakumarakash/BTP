@@ -1,0 +1,111 @@
+%% The lines that are not written within % .. % are not to be tampered with!!
+
+\documentclass[twoside]{article}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+
+\usepackage{amsmath,amsfonts,amssymb,graphicx}
+\graphicspath{ {} }
+
+
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf CS 709 : Convex Optimization
+		\hfill Autumn 2015} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\Large \hfill Second-Order Cone Programming  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Instructor: #1 \hfill By: #2} }
+      \vspace{2mm}}
+   }
+   \end{center}
+
+   \vspace*{4mm}
+}
+
+
+
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+%This is for your help while typing the notes
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc. 
+% See how they are used, below 
+
+
+\newcommand\E{\mathbb{E}}
+
+\begin{document}
+
+\lecture{Ganesh Ramakrishnan}{Aditya Kumar Akash, Manohar Kumar}%In place of scribe-name, write down your names or your group names
+
+
+\section{Introduction}
+
+%% THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
+\section{Robust Least-Squares Problem}
+Many real world optimization problems involve data which is noisy, or uncertain, due to measurement or modelling errors. So adressing data uncertainty in mathematical models is a central problem in optimization.
+A normal least square problem is \\
+\centerline {\(\min\limits_{x}\lVert Ax - y\rVert_2 \)}
+\hspace{6mm}, where \(A \in \mathbb{R}^{m \times n}, y\in \mathbb{R}^m.\) \newline
+Now it might be the case that the matrix A is known with some uncertainty. Like, we can assume that it is known to be within some distance (matrix distance) to a given nominal matrix \^{A}. Let's assume that \( \lVert A - \hat{A}\rVert \leq \rho \) , where \(\lVert.\rVert\) denotes matrix 2-norm, and \(\rho \geq 0\) measures the size of uncertainty. \newline
+So, the robust least squares problem can be written as\\
+\centerline {\(\min\limits_{x}\max\limits_{\lVert \Delta A\rVert\leq\rho} \lVert (\hat{A} + \Delta A)x - y\rVert_2 \)}
+It can be interpreted as trying to minimize the worst case value of the residual norm.\newline
+By triangle inequality,
+
+\centerline {\(\lVert(\hat{A}+\Delta A) x - y\rVert_2 \leq \lVert \hat{A} x - y\rVert_2 + \lVert(\Delta A) x\rVert_2\)} 
+Also, by definition of norm, 
+
+\centerline { \(\lVert(\Delta A) x\rVert_2 \leq \lVert \Delta A\rVert \lVert x \rVert_2 \leq \rho \lVert x \rVert_2\)}
+Hence, we have a bound on the objective value of the robust problem, 
+
+\centerline{ \(\max\limits_{\lVert \Delta A\rVert\leq\rho} \lVert(\hat{A}+\Delta A) x - y\rVert_2 \leq \lVert \hat{A} x - y\rVert_2 \leq  \lVert \hat{A} x - y\rVert_2 + \rho \lVert x \rVert_2\)}
+
+The upper bound is attained by the following value of \(\Delta A\)
+
+\centerline {\(\Delta A = \dfrac{\rho}{\lVert \hat{A} x - y\rVert_2 \cdot \lVert x \rVert_2} (\hat{A}x-y)x^T \) }
+
+Finally the robust least squares is equivalent to the following problem,
+
+\centerline {\(\min\limits_{x} \lVert \hat{A} x - y\rVert_2 + \rho \lVert x \rVert_2 \)}
+
+This is an SOCP,
+
+\centerline{ \(\min\limits_{x,u,v} u + \rho v \hspace{3mm} : \hspace{3mm} u \geq \lVert \hat{A} x - y\rVert_2, v\geq \lVert x \rVert_2\)}
+
+
+
+
+
+\end{document}

@@ -1,0 +1,127 @@
+%% The lines that are not written within % .. % are not to be tampered with!!
+
+\documentclass[twoside]{article}
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%
+% ADD PACKAGES here:
+%
+
+\usepackage{amsmath,amsfonts,amssymb,graphicx}
+\usepackage{hyperref}
+\graphicspath{ {} }
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+       \vspace{2mm}
+       \hbox to 6.28in { {\Large \hfill Capturing User reliability\hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it \hfill By: #2} }
+      \vspace{2mm}}
+   }
+   \end{center}
+
+   \vspace*{4mm}
+}
+
+
+
+\renewcommand{\cite}[1]{[#1]}
+\def\beginrefs{\begin{list}%
+        {[\arabic{equation}]}{\usecounter{equation}
+         \setlength{\leftmargin}{2.0truecm}\setlength{\labelsep}{0.4truecm}%
+         \setlength{\labelwidth}{1.6truecm}}}
+\def\endrefs{\end{list}}
+\def\bibentry#1{\item[\hbox{[#1]}]}
+
+%Use this command for a figure; it puts a figure in wherever you want it.
+%usage: \fig{NUMBER}{SPACE-IN-INCHES}{CAPTION}
+%This is for your help while typing the notes
+\newcommand{\fig}[3]{
+			\vspace{#2}
+			\begin{center}
+			Figure \thelecnum.#1:~#3
+			\end{center}
+	}
+% Use these for theorems, lemmas, proofs, etc. 
+% See how they are used, below 
+
+
+\newcommand\E{\mathbb{E}}
+
+\begin{document}
+
+\lecture{Ganesh Ramakrishnan}{Aditya Kumar Akash}%In place of scribe-name, write down your names or your group names
+
+
+
+%% THIS ENDS THE EXAMPLES. DON'T DELETE THE FOLLOWING LINE:
+\section{User reliability}
+Consider the following matrices based on how a user tags the videos.\\
+For each user $u_k$, let $M^k$ denote the matrix with rows as video instances and columns are labels. Each element $M^k_{ij}$ denotes would have following values :
+\begin{equation}
+  \begin{split}
+    M^k_{ij}\ &=\ \ 1;\ if\ u_k\ tags\ video\ i\ with\ label\ l_j\\
+    &=\ -1;\ if\ u_k\ does\ not\ tag\ video\ i\ with\ label\ l_j\\
+    &=\ 0;\ \ if\ u_k\ has\ not\ seen\ video\ i
+  \end{split}
+\end{equation}\\\\
+
+We also have our consensus matrix, $M^{cn}$, containing the labels for each videos instances.
+\begin{equation}
+  \begin{split}
+    M^{cn}_{ij}\ &=\ \ 1;\ if\ consensus\ on\ label\ j\ with\ video\ i\\
+    &=\ -1;\ if\ consensus\ on\ label\ j\ not\ with\ video\ i
+  \end{split}
+\end{equation}\\\\
+
+Now for each user $u_k$, we find the agreement between the user and consensus model for each label.\\
+The agreement would tell about the reliability of user $u_k$. \\\\
+Let us fix label $j$. For user $u_k$ and label $j$ we construct the confusion matrix using the columns $j$ of $M^k$ and $M^{cn}$:
+
+\begin{center}
+  \begin{tabular}{ | c || c | c |} 
+    \hline
+    $Consensus \downarrow, u_k\rightarrow$ & $1$ & $-1$\\
+    \hline
+    \hline
+    $1$ & $a$ & $b$\\
+    \hline
+    $-1$ & $c$ & $d$\\
+    \hline    
+  \end{tabular}
+\end{center}
+The arrow represents from whom the label is obtained. Thus rows stand for labels obtained from consensus model, while column stand for labels given by user $u_i$.\\
+Here $a$ stands for number of videos over which user $u_k$ and consensus model has value $1$ in the matrix. Similarly we get values for other elements.\\
+
+Now using \href{https://en.wikipedia.org/wiki/Cohen's\_kappa}{$Cohen\ Kappa$}, we get agreement as \\
+
+\begin{equation}
+    \kappa = \frac{p_o - p_e}{1 - p_e} = 1- \frac{1 - p_o}{1 - p_e}, \! 
+\end{equation}
+where $p_o$ is the relative observed agreement among raters, and $p_e$ is the hypothetical probability of chance agreement, using the observed data to calculate the probabilities of each observer randomly saying each category. If the raters are in complete agreement then $\kappa$ = 1. If there is no agreement among the raters other than what would be expected by chance (as given by $p_e$), $\kappa \leq$ 0.\\\\
+Let $s=a+b+c+d$. We get $p_o=(a+d)/s$, and $p_e=\frac{(a+b)*(a+c)}{s^2}+\frac{(c+d)*(b+d)}{s^2}$. Putting the values into (3) gives us the agreement, $\kappa^k$, for user $u_k$. \\
+We could call these values as the reliability values of the users for the label $j$ under consideration $j$. \\
+\begin{equation}
+  \kappa_j = (\kappa^1, ... , \kappa^k)
+\end{equation}\\\\
+Overall reliability could be taken as average over the reliability for each label.
+
+
+\end{document}

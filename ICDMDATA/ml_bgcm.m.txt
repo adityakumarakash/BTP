@@ -1,0 +1,40 @@
+% a direct extension of BGCM to handle multilabel models' outputs
+
+function ml_bgcm(datasetname,exp_no)
+alpha=2;
+n_models = 10;
+pred=load(['../data/',datasetname,'_model_0.y.0']);
+[n_inst, n_classes] = size(pred);
+
+pred=zeros(n_inst, n_classes*n_models);	% connection matrix
+for i=1:n_models
+    pred(:,(i-1)*n_classes+1:i*n_classes)=load(['../data/',datasetname,'_model_',int2str(i-1),'.y.',int2str(exp_no)]);
+end
+
+d = sum(pred, 2);
+pred = pred(d~=0, :);
+effective_n_inst = size(pred, 1);
+
+% label matrix for group nodes
+labels = eye(n_classes);
+Y = repmat(labels, n_models, 1);
+
+% normalization matrices
+Dn = diag(1./sum(pred, 2));	% for each instance node
+Dv = diag(1./(sum(pred, 1)+alpha));	% for each group node
+
+% prediction matrices
+U = 1/n_classes * ones(effective_n_inst, n_classes);
+Q = zeros(n_classes * n_models, n_classes);
+
+%size(Dv)
+%size(pred)
+%size(U)
+% the loop
+for i=1:30
+	Q = Dv * (pred' * U + alpha*Y);
+	U = Dn * pred * Q;
+end
+y=zeros(n_inst, n_classes);
+y(d~=0,:)=U;
+dlmwrite(['../data/',datasetname, '.ml_bgcm.y.', int2str(exp_no)],y,'delimiter','\t','precision',6);

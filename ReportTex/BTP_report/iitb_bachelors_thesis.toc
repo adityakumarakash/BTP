@@ -1,0 +1,17 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Motivation}{1}
+\contentsline {section}{\numberline {1.2}Related Work}{2}
+\contentsline {chapter}{\numberline {2}TagVideo Game}{3}
+\contentsline {section}{\numberline {2.1}Working of the Game}{3}
+\contentsline {section}{\numberline {2.2}Existing Scoring Function}{5}
+\contentsline {section}{\numberline {2.3}Analysis of Scoring Function}{7}
+\contentsline {section}{\numberline {2.4}Improvement of Scoring Function}{8}
+\contentsline {section}{\numberline {2.5}Experiments and Results}{9}
+\contentsline {chapter}{\numberline {3}MetaLearner}{10}
+\contentsline {section}{\numberline {3.1}MetaLearners}{10}
+\contentsline {section}{\numberline {3.2}Ensemble based Learners}{11}
+\contentsline {section}{\numberline {3.3}Consensus based Learning}{12}
+\contentsline {section}{\numberline {3.4}Experiments and Results}{15}
+\contentsline {chapter}{\numberline {4}Conclusion and Summary}{17}
+\contentsline {section}{\numberline {4.1}Summary}{17}
+\contentsline {section}{\numberline {4.2}Future Work}{18}

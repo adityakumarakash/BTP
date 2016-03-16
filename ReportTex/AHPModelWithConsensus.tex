@@ -1,0 +1,257 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+\usepackage{tikz}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[AHP, Consensus]{AHP with Consensus Learning} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Aditya Kumar Akash} % Your name
+\institute[IITB] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+IIT Bombay \\ % Your institution for the title page
+\medskip
+\textit{adityakumarakash@gmail.com} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{User-User Comparison Matrix} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\subsection{Single Label User-User Comparison Matrix} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+\begin{frame}
+\frametitle{User comparison for single label}
+Setup : users tags videos with different labels. \\
+We try to compare between the users for each label. The quantity learned would be user reliability. We generate system's relative reliability / confidence of one user over the other, learning a matrix with elements standing for reliability values.
+
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}
+\frametitle{User Reliability Matrix}
+A simple way to build reliability matrix  - \\
+Users $u_i$ , $u_j$ and label $l$. The space of videos with having label $l$, watched by both users. $n_i$ videos labelled $l$ by $u_i$, similarly $n_j$ and $n_{ij}=n_{ji}$ videos which are labelled by both as $l$.\\
+\emph{ Relative reliability is given by following ratio - }\\
+\begin{equation}
+  \begin{split}
+    r_{ij} & = \frac{\rfrac{n_{ij} + 1}{n_i + 1}}{\rfrac{n_{ji} + 1}{n_j} + 1}\\
+    & = \rfrac{n_j + 1}{n_i + 1}
+  \end{split}
+\end{equation}
+where $\rfrac{n_{ij} + 1}{n_i + 1}$ denotes fraction of videos labelled by $u_i$ over which he receives consensus with $u_j$. Thus it describes relative reliability of $u_i$ over $u_j$. $1$ is added to avoid division by $0$.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Interpretation}
+$R = [r_{ij}]$ is the relative reliability matrix (reliability preference). 
+\begin{equation}
+  r_{ij} = \rfrac{n_j + 1}{n_i + 1}
+\end{equation}
+This value also stands for inverse of fraction of videos labelled as $l$ amongst the common videos watched by the two users. \textbf{\emph{The lesser the number of videos labelled, the more is the reliability; since less tagging means restricted use of tag $l$ - means tag is used only when it is really required.}} This would form the basis of trust on the users.
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}
+\frametitle{Properties of $R_{ij}$}
+The previous definition of elements of relative reliability (reliability preference) matrix has following properties :
+\begin{enumerate}
+  \item $r_{ij} = \rfrac{n_j + 1}{n_i + 1} = \frac{1}{r_{ji}}$, reciprocal matrix without any assumption
+  \item Consider the ideal case, when all videos containing a given label $l$ is watched by all users. Then $n_i$ represents absolute value of videos labelled $l$ by user $u_i$. Thus we get $r_{ij} * r_{jk} = \frac{n_j}{n_i} * \frac{n_k}{n_j} = \frac{n_k}{n_i} = r_{ik}, \forall i,j,k$, which tells matrix would be consistent in ideal case. 
+  \item The previous point gives that the principal eigen vector of this matrix would be $r = (r_1,...,r_t), r_i = \rfrac{1}{n_i}$, (with $\lambda_{max} = t$, $t$ = total users), which means the reliability for user $u_i$ is $\rfrac{1}{n_i}$, inverse of number of videos labelled as $l$. 
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Remarks on $R_{ij}$}
+In case of non ideal environment, when not all videos, labelled as $l$, are watched by all users, we can expect that the matrix is near consistent and we could identify pairs of users for which we need to revise our relative reliability measure. This could be achieved by following - 
+\begin{itemize}
+  \item Use method outlined in AHP paper to identify which value needs to be updated to increase the consistency to maximum, so as to use eigen vector as reliability measure
+  \item Based on interpretation of matrix $R$, we could find users which have few number of videos in common and suggest such videos to users based on this
+  \item ? Not sure if first point would actually mean the second point
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Remarks on $R_{ij}$}
+Is the definition of $r_{ij}$ really capturing relative reliability ?
+\begin{itemize}
+  \item We have not really accounted for consensus, except in beginning of formulating $r_{ij}$ 
+  \item Cases in which number of videos tagged is same but the overlaps are different are not captured
+  \item Cases in which no common videos are present is treated same as in which all videos are labelled as $l$ by both users
+\end{itemize}
+\end{frame}
+
+\subsection{User correlations for set of labels}
+
+\begin{frame}
+\frametitle{Set of Labels}
+In this case, we would like to capture similar notion of user reliability over a set of labels, $L = \{l_k\}$. We extend our previous formulation to this case with $n_i$ being the number of common videos which are labelled by either of labels from $L$ - 
+\begin{equation}
+  r_{ij} = \frac{n_j}{n_i}
+\end{equation}
+which stands for inverse of ratio of videos labelled by label from $L$ amongst the common videos watched.\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Remarks}
+For the set of labels case :
+\begin{itemize}
+  \item All desired properties as in case of single labels hold
+  \item Lesser information is used to infer reliability
+  \item Information of overlap between labels in same videos and across videos is lost
+\end{itemize}
+\end{frame}
+
+
+\section{Label Correlations}
+
+\subsection{Single user}
+
+\begin{frame}
+\frametitle{Label correlation for single user}
+We wanted some confusion matrix between labels for some user. \\
+Based on the data that we have i.e. set of labels for each video is the set, it becomes difficult to come up with a measure of confusion based on only these parameters, since 
+\begin{itemize}
+  \item Are the labels actually correlated or the labeller is confused cannot be inferred from just the data
+  \item Videos could have unrelated materials
+  \item Correlation / confusion is bidirectional - we need something unidirectional for analysis as previously done
+\end{itemize}
+We could but define bias over one label than other. 
+\end{frame}
+
+
+
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Confusion}
+In order to detect confusion between labels we would need data across all users to check for whether some users are confused or if the labels are correlated in some sense. \\
+Need more analysis to reach correct inference.
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{References}
+\footnotesize{
+\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+\bibitem[Saaty]{p1} Thomas L. Saaty
+\newblock Decision-making with the AHP: Why is the principal eigenvector necessary
+\end{thebibliography}
+}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 

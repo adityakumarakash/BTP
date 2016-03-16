@@ -1,0 +1,22 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{1}
+
+\bibitem{1998}
+Clarence (skip)~Ellis. Chengzheng~Sun, \emph{Operational transformation in
+  real-time group editor:issues,algorithms and achievemnts.}
+
+\bibitem{2003}
+Moria~C.Norrie. Claudia-Lavinia~Ignat, \emph{Customizable collaborative editor
+  relying on treeopt algorithm.}
+
+\bibitem{2006}
+Richard~Watson. Stijn~Dekeyser, \emph{Extending google docs to collaborate on
+  research papers}.
+
+\end{thebibliography}

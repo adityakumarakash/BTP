@@ -1,0 +1,230 @@
+
+\section{Operational Transformation}
+
+\subsection{Introduction} 
+Consistency maintenance is significant challenge in any collaborative ediotor.
+Most innovative technique for maintaing it is Operational Transformation.
+We concentarte on integrative review of all OPT techniques and 
+their issues,algorithms and achievements\cite{1998}
+
+\subsection{Preliminaries}
+In this section some basic concepts,definitions and terminologies are introduced.
+Operational transformation technique allows two type of operations called local operations and remote opeartions.
+Local operations are nothing but operations that are genearted by local site.
+Where as remote opeartions are those operations taht are generated at some other site other than local site.
+Local opeartions are executed immediately with out any changes but remote opeartions have to be transformed against existing operations before execution.  
+\\Now we introduce some defnitions.
+
+{\bf Def 1}:causal ordering relation \cite{1998}$$ \rightarrow $$
+\\Given two operations Oa and Ob,generated at sites i and j,then $$Oa \rightarrow Ob$$,if (1)i=j and generation of Oa happened before
+the generation of Ob or (2)i is not equal to j and execution of  Oa at site j happened before the generation of Ob or (3)there exists an
+opeartion Ox,such that $$Oa \rightarrow Ox$$ and $$Ox \rightarrow Ob$$.
+
+{\bf Def 2}:Dependent and Independent operations
+\\Given two operations Oa and Ob,(1)Ob is dependent on Oa if $$Oa \rightarrow Ob$$.(2)Oa and Ob are independent(or concurrent),
+expressed as $$Oa \parallel Ob$$,if neither $$Oa \rightarrow Ob$$ nor $$Ob \rightarrow Oa$$
+
+
+\subsection{Principles of consistency}
+
+\begin{itemize}
+  
+
+
+ \item convergence(all copies are identical)
+ \item Casuality preservation
+ \item  Intention preservation(effect of execution of operation O is same as intention of O)
+
+\end{itemize}
+
+
+\subsection{List of algorithms}\cite{1998}
+
+\begin{itemize}
+ \item GROVE
+ \item REDUCE
+ \item JUPITER
+ \item  adOPTed
+
+\end{itemize}
+\subsubsection{GROVE approach}
+\begin{itemize}
+  \item {
+    Replicated architecture(for good responsiveness)
+  }
+  \item {
+    Locally executed and then braodcasted
+  }
+  \item {
+   solution consists of 2 components
+   \begin{itemize}
+   \item {
+   state-vector time stamping scheme for precedence property
+   }
+   \item{
+   dOPT(distributed) algorithm for convergence
+   }
+   \end{itemize}
+  }
+  
+  
+  \item {
+    dOPT algorithm requires the transformation function to satisfy the following property
+    \begin{itemize}
+    \item {
+    $$O_a \circ O_b' = O_b \circ O_a'$$
+    }
+    \end{itemize}
+  }
+   \item {
+   dOPT algorithm 
+  }
+  \item {
+   unsolved dOPT puzzle
+  }
+  \item {
+  Reason:above TP has to be applied only when two operations are in same state 
+  }
+  \item{
+  If they are not in same state? dOPT did not handle that !!
+  }
+
+  \end{itemize}
+  
+  
+  
+  
+  \subsubsection{REDUCE approach}
+  \begin{itemize}
+  \item {
+  Fully didtributed and Replicated as in GROVE  
+  }
+  \item {
+    Linear history buffer is maintained instead of log
+  }
+  \item {
+   Also handles 3rd consistency principle(Intention Preservation)
+  }
+  \item {
+  To address that it uses IT/ET and pre/post conditions for applying those
+  }
+  \item{
+  specifications
+  }
+  \item{
+ GOT(generic operational transformation algorithm)
+  }
+  \end{itemize}
+
+  
+  
+  
+\subsubsection{JUPITER approach}
+  \begin{itemize}
+  \item {
+    No broadcasting among clients
+  }
+  \item {
+    only 2-way between client and server
+  }
+ 
+  \end{itemize}
+
+
+  
+  
+\subsubsection{adOPTed approach}
+  \begin{itemize}
+  \item {
+    It requires additional properties from GROVE for transformation function to satisfy
+    \begin{itemize}
+    \item{
+     $$O_a \circ O_b' = O_b \circ O_a'$$
+    } 
+    \item{
+   $$T(T(O,O_a),O_b')=T(T(O,O_b),O_a')$$ 
+    }
+    
+    
+    \end{itemize}
+  }
+  \item {
+    TP1 ensures unique vertex labelling 
+  }
+  \item {
+   TP2 ensures unique edge labelling
+  }
+ 
+  \end{itemize}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  \subsubsection{treeOPT algorithm}\cite{2003}
+  
+    one of the keys to customization is structured representation of the document.
+  
+    In this section we summarize treeOPT algorithm.
+ 
+   It applies operational transformation mechanism recursively over different levels of document.
+  
+  Advantages of using this algorithm are
+  \begin{itemize}
+  \item better efficiency
+  
+  \item possibility of working at different granularity levels
+  
+ \item improvement in semantic consistency
+ \end{itemize}
+ 
+
+
+
+
+
+
+
+
+
+
+
+   This algorithm  uses tree representation of the document.
+  
+    Disadvantages of linear representation of document are
+    \begin{itemize}
+    \item {
+    keeps single history of operations
+    }
+    \item{ 
+    Less efficient as whole history needs to be scanned for every operation(Though they are working on different sections of the document)
+    }
+    \end{itemize}
+
+
+
+
+
+
+
+
+  
+
+
+
+
+%The report is organized as follows: Section 1 provides the background knowledge and the need for a continuous authentication model for smart phones.
+%Section 2 discusses about general experiment setup.
+%Section 3 discusses about the various approaches and their performance in authentication. Future scope is discussed in section 5. 
+%Section 6 draws the conclusions for the work done.

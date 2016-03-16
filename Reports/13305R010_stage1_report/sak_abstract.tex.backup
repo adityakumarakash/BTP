@@ -1,0 +1,10 @@
+%% -*- LaTeX -*-
+
+\begin{abstract}
+Breaking the smart phone security mechanism and trying to access the information available in the phone is a serious treat. 
+The portability of the phone makes it very easy for the attackers to steal it, unlike the desktop systems. 
+And the weak authentication mechanism used in the smart phones, which can be easily targeted/attacked, makes the situation totally different from that of the laptop computers. 
+We can use the touch screen interaction data of a user of the phone and model his behaviour. 
+This can be used to continuously authenticate the current user of the phone and if there is a considerable change in the usage pattern, we can restrict the access to the phone and ask to enter a password to regain access.
+In this report, we try to study the previous work done in this area and analyze their shortcomings. This helps us in designing an approach that takes the good aspects of the work and try to overcome most of the issues.
+\end{abstract}
