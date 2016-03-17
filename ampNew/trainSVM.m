@@ -6,7 +6,8 @@ function [model] = trainSVM(ylabels, classId, feature_vect, config)
         
 
         %% LibSVM Train
-          params = ['-s 0 -t 2 -c ', num2str(2^config.c), ' -g ', num2str(2^config.g), ' -w1 ', num2str(config.w_1_cost),' -w0 ',num2str(config.w_0_cost)]
+          %params = ['-s 0 -t 2 -c ', num2str(2^config.c), ' -g ', num2str(2^config.g), ' -w1 ', num2str(config.w1Cost),' -w0 ',num2str(config.w0Cost)]
+          params = ['-s 0 -t 0 -c ', num2str(2^config.c), ' -w1 ', num2str(config.w1Cost),' -w0 ',num2str(config.w0Cost)]
           model = svmtrain(temp_reln_labels, feature_vect, params);
 
 end

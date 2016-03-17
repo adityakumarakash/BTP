@@ -12,13 +12,13 @@ function [config] = setConfig()
     config.TrainFile = 'dataset/scene/scene-train.arff';
     config.TestFile = 'dataset/scene/scene-test.arff';
     config.resultFile = 'results/scene-results.data';
-    config.w_1_cost=0.5;
-    config.w_0_cost=0.5;
+    config.w1Cost=0.5;
+    config.w0Cost=0.5;
     
-    config.c_range = [-1:10];
-    config.g_range = [-5:-1];
+    config.cRange = [-1:10];
+    config.gRange = [-5:-1];
     config.g = log2(0.1);
-    config.vc_fold_size = 5;
+    config.vcFoldSize = 5;
     
     %%% Training prediction Type
     %%%     1 = W'phi(x)
