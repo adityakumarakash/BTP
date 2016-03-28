@@ -2,10 +2,11 @@
 % confusion and reliability matrix
 % Print each parameter after running the code, to see the results
 
-alpha=1;
+alpha = 1;
 nModels = 10;
 datasetname = 'medical';
 expNo = 9;
+fprintf('Experiment = %d\n', expNo);
 P=load(['../ICDMDATA/',datasetname,'_model_0.y.0']);
 [nInst, nClasses] = size(P);
 
@@ -32,15 +33,15 @@ L = eye(nClasses);
 B = repmat(L, nModels, 1);
 
 % obtain the consensus probability distribution
-[U, Q] = MLCMr(nInst, nClasses, nModels, A, alpha, B);
-
-
+%[U, Q] = MLCMr(nInst, nClasses, nModels, A, alpha, B);
 
 % Closed form values of U and Q
-[UC, QC] = MLCMrClosedForm(nInst, nClasses, nModels, A, alpha, B);
+[U, Q] = MLCMrClosedForm(nInst, nClasses, nModels, A, alpha, B);
 
+% MLCM with TD learning 
+[UTD, QTD, KTD] = TDMLCMr(nInst, nClasses, nModels, A, alpha, B, P);
 
-epsilon = 0.4*max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
+epsilon = 0.4 * max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
 L = U;          % getting the consensus label matrix, This is the prediction result for each instance
 for i=1:nInst 
     lId = L(i,:) < epsilon(i,1);
@@ -73,46 +74,50 @@ Conf = 0.5 * Conf;
 OL =load(['../ICDMDATA/',datasetname,'.label']);
 OL = OL(Inst, :);
 OL = predictionConvert(OL);
-rankLoss = rankingLoss(OL, U)/nInst
-
-% Weighted MLCMr
-UW = 1 / nClasses * ones(nInst, nClasses);
-QW = zeros(nClasses * nModels, nClasses);
-KW = K;
-for test=1:1
-    a = min(KW);
-    b = max(KW);
-    c = 10;
-    if a ~= b
-        KW = 0.1*(KW - a + 1)/(b + 1 - a);
-    end
-        
-    [UW, QW] = WeightedMLCMr(nInst, nClasses, nModels, A, alpha, B, KW);
-    epsilon = 0.35*max(UW')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
-    LW = UW;          % getting the consensus label matrix, This is the prediction result for each instance
-    for i=1:nInst 
-        lId = LW(i,:) < epsilon(i,1);
-        LW(i,lId) = -1;
-        lId = LW(i,:) >= epsilon(i,1);
-        LW(i,lId) = 1;
-    end
-    % now we evaluate the kappa values for each user and label
-    KW=zeros(nInst, nClasses * nModels);   % kappa values for each user for each label
-    LWRep = repmat(LW, 1, nModels);
-    KW = findKappaMat(P, LWRep);          % kappa values for each user , label
-    rankingLoss(OL, UW)/nInst
-end
-
-% load the actual values
-
-y=zeros(nInst, nClasses);
-y(d~=0,:)=U;
-dlmwrite(['../Output/',datasetname, '.out.', int2str(expNo)],y,'delimiter','\t','precision',6);
+rankLoss = rankingLoss(OL, U)/nInst;
+fprintf('Ranking loss using MLCM-r = %f\n', rankLoss);
+rankLoss = rankingLoss(OL, UTD)/nInst;
+fprintf('Ranking loss using TD MLCM-r = %f\n', rankLoss);
 
 
-% prediction by people
-Pred =load(['../ICDMDATA/',datasetname,'.ml_bgcm.y.', int2str(expNo)]);
-Pred = Pred(d~=0, :);
-Pred = predictionConvert(Pred);
-rankingLoss(OL, Pred)/nInst
+
+% % Weighted MLCMr
+% UW = 1 / nClasses * ones(nInst, nClasses);
+% QW = zeros(nClasses * nModels, nClasses);
+% KW = K;
+% for test=1:1
+%     a = min(KW);
+%     b = max(KW);
+%     c = 10;
+%     if a ~= b
+%         KW = 0.1*(KW - a + 1)/(b + 1 - a);
+%     end
+%         
+%     [UW, QW] = WeightedMLCMr(nInst, nClasses, nModels, A, alpha, B, KW);
+%     epsilon = 0.35*max(UW')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
+%     LW = UW;          % getting the consensus label matrix, This is the prediction result for each instance
+%     for i=1:nInst 
+%         lId = LW(i,:) < epsilon(i,1);
+%         LW(i,lId) = -1;
+%         lId = LW(i,:) >= epsilon(i,1);
+%         LW(i,lId) = 1;
+%     end
+%     % now we evaluate the kappa values for each user and label
+%     KW=zeros(nInst, nClasses * nModels);   % kappa values for each user for each label
+%     LWRep = repmat(LW, 1, nModels);
+%     KW = findKappaMat(P, LWRep);          % kappa values for each user , label
+%     rankingLoss(OL, UW)/nInst
+% end
+% 
+% % load the actual values
+% y=zeros(nInst, nClasses);
+% y(d~=0,:) = U;
+% dlmwrite(['../Output/',datasetname, '.out.', int2str(expNo)],y,'delimiter','\t','precision',6);
+% 
+% 
+% % prediction by people
+% Pred =load(['../ICDMDATA/',datasetname,'.ml_bgcm.y.', int2str(expNo)]);
+% Pred = Pred(d~=0, :);
+% Pred = predictionConvert(Pred);
+% rankingLoss(OL, Pred)/nInst
 

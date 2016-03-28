@@ -1,5 +1,5 @@
 %% Script includes the latent capacity of the users in a temporal difference learning way
-alpha=3;
+alpha = 3;
 nModels = 4;
 datasetname = 'test';
 P=load(['../Data/',datasetname,'_model_0']);
@@ -25,11 +25,13 @@ A(lId) = 0;
 L = eye(nClasses);
 B = repmat(L, nModels, 1);
 
+%% The MLCM without incorporating the user ratings
+
 % obtain the consensus probability distribution
 [U, Q] = MLCMrClosedForm(nInst, nClasses, nModels, A, alpha, B);
+U
 
-
-epsilon = 0.2*max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
+epsilon = 0.2 * max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
 L = U;          % getting the consensus label matrix, This is the prediction result for each instance
 for i=1:nInst 
     lId = L(i,:) < epsilon(i,1);
@@ -39,7 +41,14 @@ for i=1:nInst
 end
 
 % now we evaluate the kappa values for each user and label
-K=zeros(nInst, nClasses*nModels);   % kappa values for each user for each label
 LRep = repmat(L, 1, nModels);
-K = findKappaMat(P, LRep);          % kappa values for each user , label
+KUserLabel = findKappaUserLabel(P, LRep);          % kappa values for each user , label
+KUser = zeros(nModels, 1);
+for i = 1 : nModels
+   KUser(i) = findKappaUser(P(:, (i - 1) * nClasses + 1 : i * nClasses), L);
+end
 
+
+%% MLCM with user ratings changed as temporal difference learning
+[U, Q, K] = TDMLCMr(nInst, nClasses, nModels, A, alpha, B, P);
+U
