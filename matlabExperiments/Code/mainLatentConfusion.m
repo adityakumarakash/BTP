@@ -51,4 +51,33 @@ end
 
 %% MLCM with user ratings changed as temporal difference learning
 [U, Q, K] = TDMLCMr(nInst, nClasses, nModels, A, alpha, B, P);
-U
+
+
+%% Confused instance detection
+
+% For each instance find the GM over the kappa with consensus
+K1 = zeros(nInst, 1);   % Confusion using GM
+K2 = zeros(nInst, 1);   % Confusion using HM
+K3 = zeros(nInst, 1);   % Confusion using AM
+for i = 1 : nInst
+    for j = 1 : nModels
+        KVal = findKappaVec(P(i, (j - 1) * nClasses + 1 : j * nClasses), L(i, :));
+        K1(i) = K1(i) + log((1 + KVal)/2.0);
+        K2(i) = K2(i) + 2.0/(1 + KVal);
+        K3(i) = K3(i) + (1 + KVal)/2.0;
+    end
+    K1(i) = K1(i) / nModels;
+    K1(i) = exp(K1(i));
+    K2(i) = nModels/K2(i);
+    K3(i) = K3(i)/nModels;
+end
+
+% finding the Confusion using Kappa over the entire data
+LRep = repmat(L, 1, nModels);
+K4 = zeros(nInst, 1);   % Confusion using overall Kappa
+for i = 1 : nInst
+    K4(i) = K4(i) + (1 + findKappaVec(P(i, :), LRep(i, :)))/2.0;
+end
+
+
+% find confusion using pairwise kappa of the labellers
