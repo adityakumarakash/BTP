@@ -1,4 +1,4 @@
-function [ k ] = findKappaVec(X, Y)
+function [ k, temp ] = findKappaVec(X, Y)
 %UNTITLED5 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -16,5 +16,10 @@ if po == pe
 else
     k = (po - pe) / (t*t - pe);
 end
+temp = 1;
+if (sum(X == 1) + sum(X == -1) == 0) || (sum(Y == 1) + sum(Y == -1) == 0)
+    temp = 0;
+end
+
 end
 

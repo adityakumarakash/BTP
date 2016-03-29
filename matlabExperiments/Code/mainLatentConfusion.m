@@ -60,24 +60,59 @@ K1 = zeros(nInst, 1);   % Confusion using GM
 K2 = zeros(nInst, 1);   % Confusion using HM
 K3 = zeros(nInst, 1);   % Confusion using AM
 for i = 1 : nInst
+    count = 0;
     for j = 1 : nModels
-        KVal = findKappaVec(P(i, (j - 1) * nClasses + 1 : j * nClasses), L(i, :));
-        K1(i) = K1(i) + log((1 + KVal)/2.0);
-        K2(i) = K2(i) + 2.0/(1 + KVal);
-        K3(i) = K3(i) + (1 + KVal)/2.0;
+        [KVal, temp] = findKappaVec(P(i, (j - 1) * nClasses + 1 : j * nClasses), L(i, :));
+        if temp == 1
+            K1(i) = K1(i) + log((1 + KVal)/2.0);
+            K2(i) = K2(i) + 2.0/(1 + KVal);
+            K3(i) = K3(i) + (1 + KVal)/2.0;
+            count = count + 1;
+        end
     end
-    K1(i) = K1(i) / nModels;
+    K1(i) = K1(i) / count;
     K1(i) = exp(K1(i));
-    K2(i) = nModels/K2(i);
-    K3(i) = K3(i)/nModels;
+    K2(i) = count/K2(i);
+    K3(i) = K3(i)/count;
 end
 
 % finding the Confusion using Kappa over the entire data
 LRep = repmat(L, 1, nModels);
 K4 = zeros(nInst, 1);   % Confusion using overall Kappa
 for i = 1 : nInst
-    K4(i) = K4(i) + (1 + findKappaVec(P(i, :), LRep(i, :)))/2.0;
+    K4(i) = (1 + findKappaVec(P(i, :), LRep(i, :)))/2.0;
 end
 
 
 % find confusion using pairwise kappa of the labellers
+K5 = zeros(nInst, 1);   % GM   
+K6 = zeros(nInst, 1);   % HM
+K7 = zeros(nInst, 1);   % AM
+for inst = 1 : nInst
+    count = 0;
+    for i = 1 : nModels
+        for j = 1 : nModels
+            if i ~= j
+                [KVal, temp] = findKappaVec(P(inst, (i - 1) * nClasses + 1 : i * nClasses), P(inst, (j - 1) * nClasses + 1 : j * nClasses));
+                if temp == 1
+                    K5(inst) = K5(inst) + log((1 + KVal)/2.0);
+                    K6(inst) = K6(inst) + 2.0/(1 + KVal);
+                    K7(inst) = K7(inst) + (1 + KVal)/2.0;
+                    count = count + 1;
+                end
+            end
+        end
+    end
+    if count ~= 0
+        K5(inst) = K5(inst) / count;
+        K5(inst) = exp(K5(inst));
+        K6(inst) = count/K6(inst);
+        K7(inst) = K7(inst)/count;
+    else
+        K5(inst) = 1;
+        K6(inst) = 1;
+        K7(inst) = 1;
+    end
+end
+
+[K1 K2 K3 K4 K5 K6 K7]
