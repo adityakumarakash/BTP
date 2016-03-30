@@ -5,7 +5,7 @@
 alpha = 1;
 nModels = 10;
 datasetname = 'medical';
-expNo = 1;
+expNo = 7;
 fprintf('Experiment = %d\n', expNo);
 P=load(['../ICDMDATA/',datasetname,'_model_0.y.0']);
 [nInst, nClasses] = size(P);
@@ -42,6 +42,7 @@ B = repmat(L, nModels, 1);
 [UTD, QTD, KTD] = TDMLCMr(nInst, nClasses, nModels, A, alpha, B, P);
 
 epsilon = 0.4 * max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
+%epsilon = ones(nInst, 1) * 0.01;
 L = U;          % getting the consensus label matrix, This is the prediction result for each instance
 for i=1:nInst 
     lId = L(i,:) < epsilon(i,1);
@@ -49,6 +50,7 @@ for i=1:nInst
     lId = L(i,:) >= epsilon(i,1);
     L(i,lId) = 1;
 end
+
 
 % now we evaluate the kappa values for each user and label
 K=zeros(nInst, nClasses*nModels);   % kappa values for each user for each label
@@ -75,9 +77,14 @@ OL =load(['../ICDMDATA/',datasetname,'.label']);
 OL = OL(Inst, :);
 OL = predictionConvert(OL);
 rankLoss = rankingLoss(OL, U)/nInst;
-fprintf('Ranking loss using MLCM-r = %f\n', rankLoss);
+%fprintf('Ranking loss using MLCM-r = %f\n', rankLoss);
 rankLoss = rankingLoss(OL, UTD)/nInst;
-fprintf('Ranking loss using TD MLCM-r = %f\n', rankLoss);
+%fprintf('Ranking loss using TD MLCM-r = %f\n', rankLoss);
+
+%% calculating f measure
+fM = fMeasure(L, OL);
+fprintf('F measure = %f \n', fM);
+
 
 %% Confused instance detection in MLCM-r
 
@@ -161,7 +168,7 @@ K = K8;
 HC = []; % set of instances with high confusion based on kappa values
 minKappa = min(K);
 maxKappa = max(K);
-thresholdKappa = minKappa + 0.001 * maxKappa;
+thresholdKappa = minKappa + 0.005 * maxKappa;
 for i = 1 : nInst
     if K(i) < thresholdKappa
         HC = [HC i];
@@ -181,12 +188,12 @@ for i = 1 : size(HC, 2)
     cond1 = U(instance, :) <= threshold(instance) + delta;
     cond2 = U(instance, :) >= threshold(instance) - delta;
     cond = cond1 .* cond2;
-    Prob(cond==1) = 5;
+    Prob(cond==1) = 10;
     Prob = Prob / sum(Prob);
     
     % sampling the labels
     % selecting l labels as sample
-    l = 5;
+    l = 1000;
     Cdf = cumsum(Prob);
     for j = 1 : l
         t = rand;
@@ -206,8 +213,8 @@ for i = 1 : size(HC, 2)
     % label-pair
     % TODO ---
 end
-
-fprintf('Hit , Miss is %f, %f\n', hitCount, missCount);
+fprintf('Confused Instance = %d\n', size(HC, 2));
+fprintf('Hit = %d, Miss = %d, Hit percent = %.2f \n', hitCount, missCount, (hitCount*100.0)/(missCount+hitCount));
 
 
 %% Weighted MLCMr Old Code - Results not as expected

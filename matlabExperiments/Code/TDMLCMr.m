@@ -26,4 +26,4 @@ while sum(sum(abs(K-Kprev)))/sum(sum(abs(Kprev))) > 0.01
     K = K + gamma * (KNew- K);
 end
 
-fprintf('Iteration = %d\n', iteration);
+%fprintf('Iteration = %d\n', iteration);

@@ -1,0 +1,48 @@
+For TD MLCM-r model
+
+Parameters - 
+Threshold = 0.4 * maximum Probability value of the instance.
+Confused instance selected such that its Kappa value is less than min Kappa + 0.005 * max Kappa.
+Probability of labels which are in (threshold - 0.01, threshold + 0.01) is 10 times others. 
+
+Average hit % = (16433 * 100)/(16433 + 6149) = 72.77 %
+
+Experiment = 0
+Confused Instance = 2
+Hit = 1023, Miss = 938, Hit percent = 52.17 
+
+Experiment = 1
+Confused Instance = 3
+Hit = 1991, Miss = 950, Hit percent = 67.70 
+
+Experiment = 2
+Confused Instance = 3
+Hit = 1400, Miss = 1570, Hit percent = 47.14 
+
+Experiment = 3
+Confused Instance = 4
+Hit = 2134, Miss = 1780, Hit percent = 54.52 
+
+Experiment = 4
+Confused Instance = 2
+Hit = 1953, Miss = 0, Hit percent = 100.00 
+
+Experiment = 5
+Confused Instance = 2
+Hit = 1968, Miss = 0, Hit percent = 100.00 
+
+Experiment = 6
+Confused Instance = 1
+Hit = 981, Miss = 0, Hit percent = 100.00 
+
+Experiment = 7
+Confused Instance = 2
+Hit = 1068, Miss = 911, Hit percent = 53.97 
+
+Experiment = 8
+Confused Instance = 1
+Hit = 985, Miss = 0, Hit percent = 100.00 
+
+Experiment = 9
+Confused Instance = 3
+Hit = 2930, Miss = 0, Hit percent = 100.00 
