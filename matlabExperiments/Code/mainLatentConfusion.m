@@ -31,7 +31,7 @@ B = repmat(L, nModels, 1);
 [U, Q] = MLCMrClosedForm(nInst, nClasses, nModels, A, alpha, B);
 U
 
-epsilon = 0.2 * max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
+epsilon = 0.5 * max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
 L = U;          % getting the consensus label matrix, This is the prediction result for each instance
 for i=1:nInst 
     lId = L(i,:) < epsilon(i,1);
@@ -115,4 +115,68 @@ for inst = 1 : nInst
     end
 end
 
-[K1 K2 K3 K4 K5 K6 K7]
+% Fleiss kappa for agreement measure
+K8 = zeros(nInst, 1);
+for i = 1 : nInst
+    K8(i) = fleissKappa(P(i, :), nClasses);
+end
+
+KAll = [K1 K2 K3 K4 K5 K6 K7 K8];
+Color = ['y', 'm', 'c', 'r', 'g', 'b', 'w', 'k'];
+XRange = 1 : size(KAll, 1);
+figure; cla;
+hold on
+for i = 1 : size(KAll, 2)
+    plot(XRange, KAll(:, i), 'color', Color(i)); 
+end
+
+%% selection of instances with high confusion / low Kappa values
+K = K8;
+HC = []; % set of instances with high confusion based on kappa values
+minKappa = min(K);
+maxKappa = max(K);
+thresholdKappa = minKappa + 0.01 * maxKappa;
+for i = 1 : nInst
+    if K(i) < thresholdKappa
+        HC = [HC i];
+    end
+end
+
+
+%% selection of labels from the instances based on the threshold
+threshold = epsilon;  % the threshold for the instances
+delta = 0.01;         % the dela nearness of the instance probability which are to be selected
+hitCount = 0;
+missCount = 0;
+
+for i = 1 : size(HC)
+    Prob = ones(nClasses, 1);
+    instance = HC(i);
+    cond1 = U(instance, :) <= threshold(instance) + delta;
+    cond2 = U(instance, :) >= threshold(instance) - delta;
+    cond = cond1 .* cond2;
+    Prob(cond==1) = 2;
+    Prob = Prob / sum(Prob);
+    
+    % sampling the labels
+    % selecting l labels as sample
+    l = 5;
+    Cdf = cumsum(Prob);
+    for j = 1 : l
+        t = rand;
+        confusedLabel = sum(Cdf <= t)
+        
+        % check for the correctness of the selection
+%         if L(instance, confusedLabel) ~= P(instance, confusedLabel)
+%             hitCount = hitCount + 1;
+%         else
+%             missCount = missCount + 1;
+%         end
+    end
+    
+    % recommending the users about the selected confused instance
+    % label-pair
+    % TODO ---
+end
+
+fprintf('Hit , Miss is %f, %f\n', hitCount, missCount);
