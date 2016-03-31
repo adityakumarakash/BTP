@@ -1,11 +1,13 @@
 For Original MLCM-r model
 
-Parameters - 
+Parameters is tuned in following ways - 
 Threshold = 0.4 * maximum Probability value of the instance.
-Confused instance selected such that its Kappa value is less than min Kappa + 0.005 * max Kappa.
+Confused instance selected such that its Kappa value is less than (min Kappa + 0.005 * max Kappa).
 Probability of labels which are in (threshold - 0.01, threshold + 0.01) is 10 times others. 
 
+
 Average hit percentage = 16292*100/(16292 + 5940) = 73 %
+
 
 Experiment = 0
 Confused Instance = 2

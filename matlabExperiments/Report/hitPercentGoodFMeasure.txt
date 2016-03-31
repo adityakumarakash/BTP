@@ -1,7 +1,8 @@
 Average hit % = (1018 + 2005 + 1059 + 1950 + 1959 + 1957 + 969 + 999 + 983 + 2932) = 1583100 / (15831 + 950 + 921 + 1740 + 1961 + 978) = 70.7 %
 threshold = 0.9 * Probability
-Good F measure
-TD MLCM done.
+F1 measure is good for the consensus in this threshold.
+MLCM-r is the MLCM used for this case.
+For each instance in each experiment 1000 labels are sampled so as to get good estimate of hit percentage.
 
 Experiment = 0
 F measure = 0.820824 

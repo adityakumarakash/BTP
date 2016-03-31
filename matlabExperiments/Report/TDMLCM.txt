@@ -1,44 +1,45 @@
->> myDriver
+TD MLCM is the new MLCM-r which incorporates user latent capacity.
+
 Experiment = 1
 Iteration = 20
 Ranking loss using MLCM-r = 0.018171
 Ranking loss using TD MLCM-r = 0.017510
->> myDriver
+
 Experiment = 2
 Iteration = 20
 Ranking loss using MLCM-r = 0.021893
 Ranking loss using TD MLCM-r = 0.020869
->> myDriver
+
 Experiment = 3
 Iteration = 20
 Ranking loss using MLCM-r = 0.020640
 Ranking loss using TD MLCM-r = 0.020006
->> myDriver
+
 Experiment = 4
 Iteration = 20
 Ranking loss using MLCM-r = 0.021021
 Ranking loss using TD MLCM-r = 0.020465
->> myDriver
+
 Experiment = 5
 Iteration = 20
 Ranking loss using MLCM-r = 0.020828
 Ranking loss using TD MLCM-r = 0.019632
->> myDriver
+
 Experiment = 6
 Iteration = 20
 Ranking loss using MLCM-r = 0.016790
 Ranking loss using TD MLCM-r = 0.016485
->> myDriver
+
 Experiment = 7
 Iteration = 20
 Ranking loss using MLCM-r = 0.016419
 Ranking loss using TD MLCM-r = 0.016147
->> myDriver
+
 Experiment = 8
 Iteration = 20
 Ranking loss using MLCM-r = 0.019034
 Ranking loss using TD MLCM-r = 0.018498
->> myDriver
+
 Experiment = 9
 Iteration = 20
 Ranking loss using MLCM-r = 0.017898
