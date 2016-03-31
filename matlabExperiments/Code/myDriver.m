@@ -5,7 +5,7 @@
 alpha = 1;
 nModels = 10;
 datasetname = 'medical';
-expNo = 7;
+expNo = 1;
 fprintf('Experiment = %d\n', expNo);
 P=load(['../ICDMDATA/',datasetname,'_model_0.y.0']);
 [nInst, nClasses] = size(P);
@@ -40,9 +40,9 @@ B = repmat(L, nModels, 1);
 
 % MLCM with TD learning 
 [UTD, QTD, KTD] = TDMLCMr(nInst, nClasses, nModels, A, alpha, B, P);
-
-epsilon = 0.4 * max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
-%epsilon = ones(nInst, 1) * 0.01;
+U = UTD;
+epsilon = 0.9 * max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
+%epsilon = ones(nInst, 1) * 0.0001;
 L = U;          % getting the consensus label matrix, This is the prediction result for each instance
 for i=1:nInst 
     lId = L(i,:) < epsilon(i,1);
@@ -84,6 +84,10 @@ rankLoss = rankingLoss(OL, UTD)/nInst;
 %% calculating f measure
 fM = fMeasure(L, OL);
 fprintf('F measure = %f \n', fM);
+fMArr = zeros(nModels, 1);
+for i = 1 : nModels
+    fMArr(i) = fMeasure(P(:, (i - 1) * nClasses + 1 : i * nClasses), OL);
+end
 
 
 %% Confused instance detection in MLCM-r
