@@ -1,0 +1,55 @@
+Average hit % = (1018 + 2005 + 1059 + 1950 + 1959 + 1957 + 969 + 999 + 983 + 2932) = 1583100 / (15831 + 950 + 921 + 1740 + 1961 + 978) = 70.7 %
+threshold = 0.9 * Probability
+Good F measure
+TD MLCM done.
+
+Experiment = 0
+F measure = 0.820824 
+Confused Instance = 2
+Hit = 1018, Miss = 950, Hit percent = 51.73 
+
+Experiment = 1
+F measure = 0.818023 
+Confused Instance = 3
+Hit = 2005, Miss = 921, Hit percent = 68.52 
+
+Experiment = 2
+F measure = 0.817704 
+Confused Instance = 3
+Hit = 1059, Miss = 1740, Hit percent = 37.83 
+
+Experiment = 3
+F measure = 0.816362 
+Confused Instance = 4
+Hit = 1950, Miss = 1961, Hit percent = 49.86 
+
+Experiment = 4
+F measure = 0.816645 
+Confused Instance = 2
+Hit = 1959, Miss = 0, Hit percent = 100.00 
+
+Experiment = 5
+F measure = 0.814976 
+Confused Instance = 2
+Hit = 1957, Miss = 0, Hit percent = 100.00 
+
+Experiment = 6
+F measure = 0.821906 
+Confused Instance = 1
+Hit = 969, Miss = 0, Hit percent = 100.00 
+
+Experiment = 7
+F measure = 0.816717 
+Confused Instance = 2
+Hit = 999, Miss = 978, Hit percent = 50.53 
+
+Experiment = 8
+F measure = 0.823224 
+Confused Instance = 1
+Hit = 983, Miss = 0, Hit percent = 100.00 
+
+Experiment = 9
+F measure = 0.819256 
+Confused Instance = 3
+Hit = 2932, Miss = 0, Hit percent = 100.00 
+
