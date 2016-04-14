@@ -1,8 +1,0 @@
-function [ f ] = fMeasure( P, L )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
-
-
-
-end
-

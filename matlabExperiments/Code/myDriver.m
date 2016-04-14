@@ -5,7 +5,8 @@
 alpha = 1;
 nModels = 10;
 datasetname = 'medical';
-expNo = 1;
+expNo = 9;
+change = 1;
 fprintf('Experiment = %d\n', expNo);
 P=load(['../ICDMDATA/',datasetname,'_model_0.y.0']);
 [nInst, nClasses] = size(P);
@@ -40,7 +41,7 @@ B = repmat(L, nModels, 1);
 
 % MLCM with TD learning 
 [UTD, QTD, KTD] = TDMLCMr(nInst, nClasses, nModels, A, alpha, B, P);
-U = UTD;
+%U = UTD;
 epsilon = 0.9 * max(U')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
 %epsilon = ones(nInst, 1) * 0.0001;
 L = U;          % getting the consensus label matrix, This is the prediction result for each instance
@@ -51,12 +52,20 @@ for i=1:nInst
     L(i,lId) = 1;
 end
 
-
+%% User capacity calculations
 % now we evaluate the kappa values for each user and label
-K=zeros(nInst, nClasses*nModels);   % kappa values for each user for each label
+K=zeros(1, nClasses*nModels);   % kappa values for each user for each label
 LRep = repmat(L, 1, nModels);
 K = findKappaMat(P, LRep);          % kappa values for each user , label
 
+% selecting users with highest confidence for each labels
+confidentUser = zeros(nClasses, 1);
+ind = 0 : nModels - 1;
+ind = ind * nClasses;
+for l = 1 : nClasses
+    temp = K(ind + l);
+    [~, confidentUser(l)] = max(temp);
+end
 
 % evaluating label-label comparision for each user
 % first finding the p(l1|l2) values
@@ -72,26 +81,74 @@ for i=1:nModels
 end
 Conf = 0.5 * Conf;
 
-% Load the original labels
+%% Load the original labels
 OL =load(['../ICDMDATA/',datasetname,'.label']);
 OL = OL(Inst, :);
 OL = predictionConvert(OL);
 rankLoss = rankingLoss(OL, U)/nInst;
-%fprintf('Ranking loss using MLCM-r = %f\n', rankLoss);
+fprintf('Ranking loss using MLCM-r = %f\n', rankLoss);
 rankLoss = rankingLoss(OL, UTD)/nInst;
-%fprintf('Ranking loss using TD MLCM-r = %f\n', rankLoss);
+fprintf('Ranking loss using TD MLCM-r = %f\n', rankLoss);
 
-%% calculating f measure
-fM = fMeasure(L, OL);
-fprintf('F measure = %f \n', fM);
-fMArr = zeros(nModels, 1);
-for i = 1 : nModels
-    fMArr(i) = fMeasure(P(:, (i - 1) * nClasses + 1 : i * nClasses), OL);
+
+%% Prediction using threshold selection to maximize kappa measure
+if change == 1
+    U = UTD;
+end
+LKappa = U;
+thresholdKappaVec = zeros(nInst, 1);
+for i = 1 : nInst
+    % find the threshold for the case
+    temp = U(i, :);
+    [temp, index] = sort(temp);
+    threshold = (temp(1:nClasses-1) + temp(2:nClasses)) / 2;
+    threshold = [0 threshold 1];
+    maxK = 0;
+    maxTau = 0;
+    for tau = threshold
+        temp = U(i, :);
+        temp(temp <= tau) = -1;
+        temp(temp > tau) = 1;
+        sumK = 0;
+        count = 0;
+        for j = 1 : nModels
+            [KVal, ind] = findKappaVec(P(i, (j - 1) * nClasses + 1 : j * nClasses), temp);
+            if ind == 1
+                count = count + 1;
+                sumK = sumK + KVal;
+            end
+        end
+        sumK = sumK/count;
+        if sumK > maxK
+            maxTau = tau;
+            maxK = sumK;
+        end
+    end
+    LKappa(i, U(i, :) <= maxTau) = -1;
+    LKappa(i, U(i, :) > maxTau) = 1;
+    thresholdKappaVec(i) = maxTau;
 end
 
 
-%% Confused instance detection in MLCM-r
+%% calculating f measure
+fM = fMeasure(L, OL);
+err = findError(L, OL);
+fprintf('F = %f, err = %f \n', fM, err);
+fMArr = zeros(nModels, 1);
+errArr = zeros(nModels, 1);
+for i = 1 : nModels
+    errArr(i) = findError(P(:, (i - 1) * nClasses + 1 : i * nClasses), OL);
+    fMArr(i) = fMeasure(P(:, (i - 1) * nClasses + 1 : i * nClasses), OL);
+end
+meanFM = mean(fMArr);
+meanErr = mean(errArr);
+fprintf('mean F = %f, err = %f \n', meanFM, meanErr);
+fM = fMeasure(LKappa, OL);
+err = findError(LKappa, OL);
+fprintf('new F = %f, err = %f \n', fM, err);
 
+
+%% Confused instance detection in MLCM-r
 
 % For each instance find the GM over the kappa with consensus
 K1 = zeros(nInst, 1);   % Confusion using GM
@@ -181,12 +238,13 @@ end
 
 
 %% selection of labels from the instances based on the threshold
-threshold = epsilon;  % the threshold for the instances
+%threshold = epsilon;  % the threshold for the instances
+threshold = thresholdKappaVec;
 delta = 0.01;         % the dela nearness of the instance probability which are to be selected
 hitCount = 0;
 missCount = 0;
 
-for i = 1 : size(HC, 2)
+for i = 1 : size(HC, 2)    
     Prob = ones(nClasses, 1);
     instance = HC(i);
     cond1 = U(instance, :) <= threshold(instance) + delta;
@@ -206,11 +264,22 @@ for i = 1 : size(HC, 2)
             continue;
         end
         % check for the correctness of the selection
-        if L(instance, confusedLabel) ~= P(instance, confusedLabel)
+        if L(instance, confusedLabel) == OL(instance, confusedLabel)
             hitCount = hitCount + 1; 
         else
             missCount = missCount + 1; 
         end
+        
+        % correctness by comparing with the confident users
+%         correctLabelValue = P(instance, (confidentUser(confusedLabel) - 1) * nClasses + confusedLabel);
+%         if correctLabelValue ~= L(instance, confusedLabel)
+%             if correctLabelValue == OL(instance, confusedLabel)
+%                 hitCount = hitCount + 1;
+%             else
+%                 missCount = missCount + 1;
+%             end
+%         end
+        
     end
     
     % recommending the users about the selected confused instance
@@ -220,44 +289,6 @@ end
 fprintf('Confused Instance = %d\n', size(HC, 2));
 fprintf('Hit = %d, Miss = %d, Hit percent = %.2f \n', hitCount, missCount, (hitCount*100.0)/(missCount+hitCount));
 
+mean(sum(OL==1, 1))
 
-%% Weighted MLCMr Old Code - Results not as expected
-% UW = 1 / nClasses * ones(nInst, nClasses);
-% QW = zeros(nClasses * nModels, nClasses);
-% KW = K;
-% for test=1:1
-%     a = min(KW);
-%     b = max(KW);
-%     c = 10;
-%     if a ~= b
-%         KW = 0.1*(KW - a + 1)/(b + 1 - a);
-%     end
-%         
-%     [UW, QW] = WeightedMLCMr(nInst, nClasses, nModels, A, alpha, B, KW);
-%     epsilon = 0.35*max(UW')';     %mean(U,2) - 0.5*std(U')'; Deciding the threshold for probability values
-%     LW = UW;          % getting the consensus label matrix, This is the prediction result for each instance
-%     for i=1:nInst 
-%         lId = LW(i,:) < epsilon(i,1);
-%         LW(i,lId) = -1;
-%         lId = LW(i,:) >= epsilon(i,1);
-%         LW(i,lId) = 1;
-%     end
-%     % now we evaluate the kappa values for each user and label
-%     KW=zeros(nInst, nClasses * nModels);   % kappa values for each user for each label
-%     LWRep = repmat(LW, 1, nModels);
-%     KW = findKappaMat(P, LWRep);          % kappa values for each user , label
-%     rankingLoss(OL, UW)/nInst
-% end
-% 
-% % load the actual values
-% y=zeros(nInst, nClasses);
-% y(d~=0,:) = U;
-% dlmwrite(['../Output/',datasetname, '.out.', int2str(expNo)],y,'delimiter','\t','precision',6);
-% 
-% 
-% % prediction by people
-% Pred =load(['../ICDMDATA/',datasetname,'.ml_bgcm.y.', int2str(expNo)]);
-% Pred = Pred(d~=0, :);
-% Pred = predictionConvert(Pred);
-% rankingLoss(OL, Pred)/nInst
 
