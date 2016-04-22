@@ -14,4 +14,7 @@ lId = po == pe;
 K = (po - pe)./ (T.*T - pe);
 K(lId) = 0;
 K = (K + 1) / 2.0;
+
+Ind = T == 0;
+K(Ind) = -2;
 end

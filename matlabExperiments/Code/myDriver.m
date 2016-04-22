@@ -54,9 +54,10 @@ end
 
 %% User capacity calculations
 % now we evaluate the kappa values for each user and label
-K=zeros(1, nClasses*nModels);   % kappa values for each user for each label
+K = zeros(1, nClasses*nModels);   % kappa values for each user for each label
 LRep = repmat(L, 1, nModels);
 K = findKappaMat(P, LRep);          % kappa values for each user , label
+
 
 % selecting users with highest confidence for each labels
 confidentUser = zeros(nClasses, 1);
@@ -217,12 +218,12 @@ for i = 1 : nInst
 end
 
 KAll = [K1 K2 K3 K4 K5 K6 K7 K8];
-Color = ['b', 'r', 'w', 'w', 'w', 'w', 'w', 'w'];
-XRange = 1 : size(KAll, 1);
-YRange = [4, 8];
-for i = 1 : size(YRange, 2)
-    plot(XRange, KAll(:, YRange(i)), 'color', Color(i)); 
-end
+% Color = ['b', 'r', 'w', 'w', 'w', 'w', 'w', 'w'];
+% XRange = 1 : size(KAll, 1);
+% YRange = [4, 8];
+% for i = 1 : size(YRange, 2)
+%     plot(XRange, KAll(:, YRange(i)), 'color', Color(i)); 
+% end
 
 %% selection of instances with high confusion / low Kappa values
 K = K8;
@@ -255,7 +256,7 @@ for i = 1 : size(HC, 2)
     
     % sampling the labels
     % selecting l labels as sample
-    l = 1000;
+    l = 10;
     Cdf = cumsum(Prob);
     for j = 1 : l
         t = rand;
@@ -263,6 +264,7 @@ for i = 1 : size(HC, 2)
         if confusedLabel == 0
             continue;
         end
+        
         % check for the correctness of the selection
         if L(instance, confusedLabel) == OL(instance, confusedLabel)
             hitCount = hitCount + 1; 
@@ -291,4 +293,188 @@ fprintf('Hit = %d, Miss = %d, Hit percent = %.2f \n', hitCount, missCount, (hitC
 
 mean(sum(OL==1, 1))
 
+
+
+%% Experiment with all users to increase the consensus using GT
+
+%U, Q from MLCM
+%L is the labels
+L = LKappa;
+K = K3;     % kappa values for the instances
+[sortedValues, sortedIndex] = sort(K);
+
+
+
+%% Experiment with all users but experts
+
+% expert evaluation
+
+userConfidenceMicro = zeros(nModels, 1);
+for i = 1 : nModels
+    userConfidenceMicro(i) = findKappaUser(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
+end
+
+userConfidenceMacro = zeros(nModels, 1);
+for i = 1 : nModels
+    userConfidenceMacro(i) = findUserConfidenceMacro(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
+end
+
+userConfidenceMean = zeros(nModels, 1);
+LRep = repmat(L, 1, nModels);
+K = findKappaUserLabel(P, LRep);          % kappa values for each user , label
+for i = 1 : nModels
+    temp = K((i - 1) * nClasses + 1 : i * nClasses);
+    userConfidenceMean(i) = sum(temp) / sum(temp~=-2);
+end
+
+% figure;
+% hold on;
+% plot(userConfidenceMicro);
+% plot(userConfidenceMacro);
+% plot(userConfidenceMean);
+% plot(fMArr);
+% hold off;
+
+userCapacity = userConfidenceMacro;
+
+% expert selection 
+% selecting top 'expertNum' users as the experts
+expertNum = 3;                                              % parameter
+[sortedValues, sortIndex] = sort(userCapacity ,'descend');  
+maxIndex = sortIndex(1 : expertNum); 
+genIndex = sortIndex(expertNum + 1 : end);
+
+% generating the new data using by removing the experts
+% expert opinion
+expertL = zeros(nInst, nClasses); 
+for i = maxIndex
+    expertL = expertL + P(:, (i - 1) * nClasses + 1 : i * nClasses);
+end
+expertL(expertL > 0) = 1;
+expertL(expertL < 0) = -1;
+
+% non experts
+nModelsGen = nModels - expertNum;
+genP = zeros(nInst, nClasses * nModelsGen);
+for i = 1 : nModelsGen
+    modelNo = genIndex(i);
+    genP(:, (i - 1) * nClasses + 1 : i * nClasses) = P(:, (modelNo - 1) * nClasses + 1 : modelNo * nClasses);
+end
+P = genP;
+nModels = nModelsGen;
+
+d = sum(P~=0,2);
+Inst = [1:nInst]';
+P = P(d~=0, :);
+Inst = Inst(d~=0, :);
+oldInst = nInst;
+nInst = size(P, 1);
+
+expertL = expertL(Inst, :);
+OL = OL(Inst, :);
+% MLCM on the general models data
+A = P;
+lId = A(:,:) == -1;
+A(lId) = 0;
+
+% label matrix for group nodes
+temp = eye(nClasses);
+B = repmat(temp, nModels, 1);
+
+% Closed form values of U and Q
+[U, Q] = MLCMrClosedForm(nInst, nClasses, nModels, A, alpha, B);
+
+% obtaining the prediction
+% Prediction using threshold selection to maximize kappa measure
+L = U;
+thresholdKappaVec = zeros(nInst, 1);
+for i = 1 : nInst
+    % find the threshold for the case
+    temp = U(i, :);
+    [temp, index] = sort(temp);
+    threshold = (temp(1:nClasses-1) + temp(2:nClasses)) / 2;
+    threshold = [0 threshold 1];
+    maxK = 0;
+    maxTau = 0;
+    for tau = threshold
+        temp = U(i, :);
+        temp(temp <= tau) = -1;
+        temp(temp > tau) = 1;
+        sumK = 0;
+        count = 0;
+        for j = 1 : nModelsGen
+            [KVal, ind] = findKappaVec(P(i, (j - 1) * nClasses + 1 : j * nClasses), temp);
+            if ind == 1
+                count = count + 1;
+                sumK = sumK + KVal;
+            end
+        end
+        sumK = sumK/count;
+        if sumK > maxK
+            maxTau = tau;
+            maxK = sumK;
+        end
+    end
+    L(i, U(i, :) <= maxTau) = -1;
+    L(i, U(i, :) > maxTau) = 1;
+    thresholdKappaVec(i) = maxTau;
+end
+
+% ordering the instances based on the confusion
+
+% For each instance find the GM over the kappa with consensus
+K1 = zeros(nInst, 1);   % Confusion using GM
+K2 = zeros(nInst, 1);   % Confusion using HM
+K3 = zeros(nInst, 1);   % Confusion using AM
+for i = 1 : nInst
+    count = 0;
+    for j = 1 : nModels
+        [KVal, temp] = findKappaVec(P(i, (j - 1) * nClasses + 1 : j * nClasses), L(i, :));
+        if temp == 1
+            K1(i) = K1(i) + log((1 + KVal)/2.0);
+            K2(i) = K2(i) + 2.0/(1 + KVal);
+            K3(i) = K3(i) + (1 + KVal)/2.0;
+            count = count + 1;
+        end
+    end
+    K1(i) = K1(i) / count;
+    K1(i) = exp(K1(i));
+    K2(i) = count/K2(i);
+    K3(i) = K3(i)/count;
+end
+
+% Fleiss kappa for agreement measure
+K4 = zeros(nInst, 1);
+for i = 1 : nInst
+    K4(i) = fleissKappa(P(i, :), nClasses);
+end
+
+% using one of the kappa
+K = K3;
+
+[sortedValues, sortedIndex] = sort(K); 
+% for percentile = 1 : 100
+for inst = 1 : 10
+    i = sortedIndex(inst);
+    delta = 0.01;
+    Prob = U(i, :);
+    ind = logical((Prob >= (thresholdKappaVec(i) - delta)) .* (Prob <= (thresholdKappaVec(i) + delta)));
+    % find the new labels
+    LNew = L(i, :);
+    LNew(ind) = OL(i, ind);
+    
+    % calculating the consensus
+    count = 0;
+    k = 0;
+    for j = 1 : nModels
+        [KVal, temp] = findKappaVec(P(i, (j - 1) * nClasses + 1 : j * nClasses), LNew);
+        if temp == 1
+            k = k + (1 + KVal)/2.0;
+            count = count + 1;
+        end
+    end
+    k = k/count;
+    fprintf('For inst = %d, Consensus old = %f, new = %f\n', i, sortedValues(inst), k);
+end
+% end
 
