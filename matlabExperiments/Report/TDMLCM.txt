@@ -1,4 +1,4 @@
-TD MLCM is the new MLCM-r which incorporates user latent capacity.
+TDMLCM is the new MLCM-r which incorporates user latent capacity.
 
 Experiment = 1
 Iteration = 20
