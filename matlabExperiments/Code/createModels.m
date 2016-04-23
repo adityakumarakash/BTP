@@ -6,12 +6,12 @@ DatasetName = 'medical';
 k = 10;    % 10 fold CV is done
 beta = 1;
 expNum = 1;
-libSVMPath = '/home/aditya/8thsem/BTP/libsvm-3.21/matlab';
+libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
 addpath(libSVMPath)
 
 %% loading the data from the dataset
-%[trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
+[trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
 
 %% get N number of models / predictions
 instances = size(trainData, 1); % instance count in training
