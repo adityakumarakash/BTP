@@ -5,7 +5,7 @@
 %% setup configuration
 N = 10;                     % N models are created
 DatasetName = 'medical';
-k = 10;                     % k fold CV is done for training the models
+k = 5;                     % k fold CV is done for training the models
 expNum = 1;
 libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
@@ -13,10 +13,10 @@ addpath(libSVMPath);
 
 %% loading the data from the dataset
 [trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
-trainData = trainData(1 : 100, :);
-testData = testData(1 : 100, :);
-trainLabel = trainLabel(1 : 100, :);
-testLabel = testLabel(1 : 100, :);
+% trainData = trainData(100 : 200, :);
+% testData = testData(100 : 200, :);
+% trainLabel = trainLabel(100 : 200, :);
+% testLabel = testLabel(100 : 200, :);
 
 %% Partition data for training each of the models
 trainDataModels = cell(N, 1);
@@ -34,13 +34,15 @@ fprintf('Training Data generated\n');
 %% train each model
 modelSet = cell(N, 1);
 for i = 1 : N
-    modelSet{i} = trainModelUsingCV(trainDataModels{i}, trainLabelModels{i}, k);
+    
+    M = trainModelUsingCV(trainDataModels{i}, trainLabelModels{i}, k);size(M)
+    modelSet{i} = M;size(modelSet{i})
     fprintf('%d Model trained\n', i);
 end
 
 %% prediction from each model
-P = zeros(size(testData, 1), size(testData, 2) * N);
-labelCount = size(testData, 2);
+P = zeros(size(testData, 1), size(testLabel, 2) * N);
+labelCount = size(testLabel, 2);
 for i = 1 : N
     P(:, (i - 1) * labelCount + 1 : i * labelCount) = predictLabels(modelSet{i}, testData);
 end
@@ -51,7 +53,7 @@ fprintf('Prediction Done\n');
 A = P;
 P(P == 0) = -1;
 nInstances = size(testData, 1);
-nClasses = size(testData, 2);
+nClasses = size(testLabel, 2);
 nModels = N;
 alpha = 1;
 
@@ -65,7 +67,7 @@ L = binarizeProbDist(U, P);
 fprintf('Binarization Done\n');
 
 % get the agreement values of the instances
-K = zero(nInstaces, 1);
+K = zeros(nInstances, 1);
 for i = 1 : nInstances
     K(i) = findAgreement(L(i, :), P(i, :));
 end
