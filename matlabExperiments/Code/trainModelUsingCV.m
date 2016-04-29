@@ -2,6 +2,7 @@ function [ modelMatrix ] = trainModelUsingCV( trainData, trainLabel, CVFold )
 %   Returns a matrix of SVM models for each of the labels
 %   Detailed explanation goes here
 
+
 %% Parameters
 k = CVFold;    
 beta = 1;
@@ -19,6 +20,7 @@ CV = cvpartition(instanceCount, 'KFold', k);
 %% Train SVM on each partition and each label
 CArr = zeros(labelCount, 1);
 GammaArr = zeros(labelCount, 1);
+
 
 for l = 1 : labelCount
     CArr(l) = -1; GammaArr(l) = -5; fMax = 0;
@@ -40,8 +42,8 @@ for l = 1 : labelCount
                 model = trainSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], config);
 
                 % prediction for training data
-                [predictionLabelTrn, accuracyTrn, ~] = svmpredict(trainLabelCV, trainDataCV, model);
-                [predictionLabelCV, accuracyCV, ~] = svmpredict(testLabelCV, testDataCV, model);
+                %[predictionLabelTrn, accuracyTrn, ~] = svmpredict(trainLabelCV, trainDataCV, model);
+                [predictionLabelCV, ~, ~] = svmpredict(testLabelCV, testDataCV, model);
                 f = findFScore(predictionLabelCV, testLabelCV, beta);
                 fAvg = fAvg + f;
             end
@@ -56,12 +58,16 @@ for l = 1 : labelCount
     end
 
     % add non zero row to training data
-    nzRow = find(label, 1);
+    nzRow = find(label(:, l), 1);
     % train SVM on the optimum parameters
     config.C = CArr(l);
     config.gamma = GammaArr(l);
-    model = trainSVM([data(nzRow, :); data], [1; label], config);   % train the model on the entire data
-    modelMatrix = [modelMatrix model];  % append each label model to the matrix
+    model = trainSVM([data(nzRow, :); data], [1; label(:, l)], config);   % train the model on the entire data
+    if l == 1
+        modelMatrix = model;
+    else
+        modelMatrix = [modelMatrix model];  % append each label model to the matrix
+    end
 end
 
 end

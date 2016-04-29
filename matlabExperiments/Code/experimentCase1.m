@@ -13,6 +13,10 @@ addpath(libSVMPath);
 
 %% loading the data from the dataset
 [trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
+trainData = trainData(1 : 100, :);
+testData = testData(1 : 100, :);
+trainLabel = trainLabel(1 : 100, :);
+testLabel = testLabel(1 : 100, :);
 
 %% Partition data for training each of the models
 trainDataModels = cell(N, 1);
@@ -25,12 +29,13 @@ for i = 1 : N
     trainDataModels{i} = trainData(index, :);
     trainLabelModels{i} = trainLabel(index, :);
 end
-
+fprintf('Training Data generated\n');
 
 %% train each model
 modelSet = cell(N, 1);
 for i = 1 : N
     modelSet{i} = trainModelUsingCV(trainDataModels{i}, trainLabelModels{i}, k);
+    fprintf('%d Model trained\n', i);
 end
 
 %% prediction from each model
@@ -39,6 +44,8 @@ labelCount = size(testData, 2);
 for i = 1 : N
     P(:, (i - 1) * labelCount + 1 : i * labelCount) = predictLabels(modelSet{i}, testData);
 end
+
+fprintf('Prediction Done\n');
 
 %% MLCM on the prediction
 A = P;
@@ -52,7 +59,10 @@ alpha = 1;
 L = eye(nClasses);
 B = repmat(L, nModels, 1);
 [U, Q] = MLCMrClosedForm(nInstances, nClasses, nModels, A, alpha, B);
+fprintf('MLCM prediction done\n');
+
 L = binarizeProbDist(U, P);
+fprintf('Binarization Done\n');
 
 % get the agreement values of the instances
 K = zero(nInstaces, 1);
