@@ -24,7 +24,7 @@ trainLabelModels = cell(N, 1);
 fraction = 0.9;
 trainInst = int32(size(trainData, 1) * 0.9);
 totalInstance = size(trainData, 1);
-for i = 1 : N
+parfor i = 1 : N
     index = randsample(totalInstance, trainInst);
     trainDataModels{i} = trainData(index, :);
     trainLabelModels{i} = trainLabel(index, :);
@@ -33,8 +33,7 @@ fprintf('Training Data generated\n');
 
 %% train each model
 modelSet = cell(N, 1);
-for i = 1 : N
-    
+for i = 1 : N    
     M = trainModelUsingCV(trainDataModels{i}, trainLabelModels{i}, k);size(M)
     modelSet{i} = M;size(modelSet{i})
     fprintf('%d Model trained\n', i);
@@ -50,9 +49,11 @@ end
 fprintf('Prediction Done\n');
 
 %% MLCM on the prediction
+index = sum(P, 2) ~= 0;
+P = P(index, :);
 A = P;
 P(P == 0) = -1;
-nInstances = size(testData, 1);
+nInstances = size(A, 1);
 nClasses = size(testLabel, 2);
 nModels = N;
 alpha = 1;
@@ -68,6 +69,6 @@ fprintf('Binarization Done\n');
 
 % get the agreement values of the instances
 K = zeros(nInstances, 1);
-for i = 1 : nInstances
+parfor i = 1 : nInstances
     K(i) = findAgreement(L(i, :), P(i, :));
 end

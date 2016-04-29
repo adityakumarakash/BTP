@@ -28,7 +28,7 @@ for l = 1 : labelCount
             config.C = c;
             config.gamma = g;
             fAvg = 0;
-            for i = 1 : k
+            parfor i = 1 : k
                 trainDataCV = data(CV.training(i), :);
                 trainLabelCV = label(CV.training(i), l);
                 testDataCV = data(CV.test(i), :);
@@ -68,6 +68,10 @@ for l = 1 : labelCount
     % train SVM on the optimum parameters
     config.C = CArr(l);
     config.gamma = GammaArr(l);
+    disp('----------------------');
+    disp(CArr(l));
+    disp(GammaArr(l));q
+    disp('----------------------');
     model = trainSVM([data(nzRow, :); data], [1; label(:, l)], config);   % train the model on the entire data
     if l == 1
         modelMatrix = model;

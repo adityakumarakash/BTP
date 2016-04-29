@@ -6,7 +6,7 @@ function [ P ] = predictLabels( modelMatrix, testData )
 labelCount = size(modelMatrix, 2);
 instanceCount = size(testData, 1);
 P = zeros(instanceCount, labelCount);
-for l = 1 : labelCount
+parfor l = 1 : labelCount
     [P(:, l), ~, ~] = svmpredict(P(:, l), testData, modelMatrix(l)); 
 end
 
