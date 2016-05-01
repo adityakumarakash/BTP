@@ -13,6 +13,7 @@ expTotal = 1; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
 addpath(libSVMPath);
+Folder = '../Output/modelsCV/';
 
 %% loading the data from the dataset
 [trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
@@ -23,7 +24,7 @@ dataSet = trainData;
 labelSet = trainLabel;
 
 % write the original labels of the models
-dlmwrite(['../Output/models/', DatasetName, '.label'], labelSet, 'delimiter', '\t');
+dlmwrite([Folder, DatasetName, '.label'], labelSet, 'delimiter', '\t');
 
 %% get N number of models / predictions
 instanceCount = size(dataSet, 1); % instance count in training
@@ -96,7 +97,7 @@ for expNum = 1 : expTotal
 
         % saved the generated prediction of the model by rearranging
         predictionLabels(revOrder, :) = predictionLabels;
-        dlmwrite(['../Output/models/', DatasetName, '_model_', int2str(modelNum), '.y.', int2str(expNum)], predictionLabels, 'delimiter', '\t');
+        dlmwrite([Folder, DatasetName, '_model_', int2str(modelNum), '.y.', int2str(expNum)], predictionLabels, 'delimiter', '\t');
     end
 end
 
