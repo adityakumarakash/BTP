@@ -52,8 +52,18 @@ for expNum = 1 : expTotal
         for l = 1 : labelCount
             predictionLabel = zeros(instanceCount, 1);
             CArr(l) = -1; GammaArr(l) = -5; fMax = 0;
-            for c = -1 : 8             % from -1 to 10
-                for g = -4 : -1         % from -5 to -1
+            lowC = -1; highC = 9;
+            lowG = -4; highG = -1;
+            
+            if modelNum > 1
+                lowC = CArr(l);
+                highC = CArr(l);
+                lowG = GammaArr(l);
+                highG = GammaArr(l);
+            end
+            
+            for c = lowC : highC             % from -1 to 10
+                for g = lowG : highG         % from -5 to -1
                     config.C = c;
                     config.gamma = g;
                     fAvg = 0;
