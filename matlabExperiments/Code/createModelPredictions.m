@@ -9,19 +9,21 @@ N = 10; % N models are created
 DatasetName = 'medical';
 k = 10;    % k fold CV is done
 beta = 1;
-expTotal = 1; % Num of experiments
+expTotal = 2; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
 addpath(libSVMPath);
 Folder = '../Output/modelsCV/';
+fId = fopen(strcat(Folder, 'outputs.txt'), 'a');
+fprintf(fId, '\n-----------------------------------------------------------\n');
 
 %% loading the data from the dataset
 [trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
-%dataSet = [trainData; testData];
-%labelSet = [trainLabel; testLabel];
+dataSet = [trainData; testData];
+labelSet = [trainLabel; testLabel];
 
-dataSet = trainData;
-labelSet = trainLabel;
+% dataSet = trainData;
+% labelSet = trainLabel;
 
 % write the original labels of the models
 dlmwrite([Folder, DatasetName, '.label'], labelSet, 'delimiter', '\t');
@@ -31,8 +33,9 @@ instanceCount = size(dataSet, 1); % instance count in training
 labelCount = size(labelSet, 2);   % labels count 
 
 for expNum = 1 : expTotal
-    for modelNum =  1 : 1
+    for modelNum =  1 : N
         %% perfom randomization for each model generation
+        fprintf(fId, 'Model Number %d\n', modelNum);
         order = randperm(instanceCount);
         data = dataSet(order, :);
         label = labelSet(order, :);
@@ -46,16 +49,16 @@ for expNum = 1 : expTotal
         CArr = zeros(labelCount, 1);
         GammaArr = zeros(labelCount, 1);
         predictionLabels = zeros(instanceCount, labelCount);
-        for l = 1 : 1
+        for l = 1 : labelCount
             predictionLabel = zeros(instanceCount, 1);
             CArr(l) = -1; GammaArr(l) = -5; fMax = 0;
-            for c = 4 : 5             % from -1 to 10
-                for g = -3 : -2         % from -5 to -1
+            for c = -1 : 8             % from -1 to 10
+                for g = -4 : -1         % from -5 to -1
                     config.C = c;
                     config.gamma = g;
                     fAvg = 0;
                     predictionLabelTemp = zeros(instanceCount, 1);
-                    for i = 1 : k
+                    parfor i = 1 : k
                         trainDataCV = data(CV.training(i), :);
                         trainLabelCV = label(CV.training(i), l);
                         testDataCV = data(CV.test(i), :);
@@ -92,7 +95,7 @@ for expNum = 1 : expTotal
 
             % prediction for the test dataset
             predictionLabels(:, l) = predictionLabel;
-            fprintf('F1 score for label %d. CV FMeasure = %f\n', l, fMax);
+            fprintf(fId, 'F1 score for label %d. CV FMeasure = %f\n', l, fMax);
         end
 
         % saved the generated prediction of the model by rearranging
@@ -101,6 +104,4 @@ for expNum = 1 : expTotal
     end
 end
 
-
-
-
+fprintf(fId, 'Done predictions for dataset %s\n', DatasetName);
