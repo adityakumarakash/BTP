@@ -583,3 +583,32 @@ F1 score for label 43. CV FMeasure = 0.000000
 F1 score for label 44. CV FMeasure = 0.913333
 F1 score for label 45. CV FMeasure = 0.856634
 Done predictions for dataset medical
+
+-----------------------------------------------------------
+Model Number 1
+
+-----------------------------------------------------------
+Model Number 1
+
+-----------------------------------------------------------
+Model Number 1
+F1 score for label 1. CV FMeasure = 0.042051
+F1 score for label 2. CV FMeasure = 0.000000
+F1 score for label 3. CV FMeasure = 0.000000
+F1 score for label 4. CV FMeasure = 0.000000
+F1 score for label 5. CV FMeasure = 0.083847
+
+-----------------------------------------------------------
+Model Number 1
+
+-----------------------------------------------------------
+Model Number 1
+
+-----------------------------------------------------------
+Model Number 1
+
+-----------------------------------------------------------
+Model Number 1
+
+-----------------------------------------------------------
+Model Number 1

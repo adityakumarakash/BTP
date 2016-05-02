@@ -103,6 +103,7 @@ for expNum = 1 : expTotal
                 end
             end
 
+
             % prediction for the test dataset
             predictionLabels(:, l) = predictionLabel;
             fprintf(fId, 'F1 score for label %d. CV FMeasure = %f\n', l, fMax);
