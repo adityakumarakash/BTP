@@ -5,11 +5,11 @@
 % N models are create using this strategy.
 
 %% Parameters
-N = 10; % N models are created
+N = 1; % N models are created
 DatasetName = 'medical';
 k = 10;    % k fold CV is done
 beta = 1;
-expTotal = 2; % Num of experiments
+expTotal = 1; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
 addpath(libSVMPath);
