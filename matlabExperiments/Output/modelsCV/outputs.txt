@@ -612,3 +612,101 @@ Model Number 1
 
 -----------------------------------------------------------
 Model Number 1
+
+-----------------------------------------------------------
+Model Number 1
+F1 score for label 1. CV FMeasure = 0.928293
+F1 score for label 2. CV FMeasure = 0.700000
+F1 score for label 3. CV FMeasure = 0.000000
+F1 score for label 4. CV FMeasure = 0.200000
+F1 score for label 5. CV FMeasure = 0.929576
+F1 score for label 6. CV FMeasure = 0.000000
+F1 score for label 7. CV FMeasure = 0.000000
+F1 score for label 8. CV FMeasure = 0.000000
+F1 score for label 9. CV FMeasure = 0.000000
+F1 score for label 10. CV FMeasure = 0.860712
+F1 score for label 11. CV FMeasure = 0.252381
+F1 score for label 12. CV FMeasure = 0.100000
+F1 score for label 13. CV FMeasure = 0.000000
+F1 score for label 14. CV FMeasure = 0.000000
+F1 score for label 15. CV FMeasure = 0.316667
+F1 score for label 16. CV FMeasure = 0.000000
+F1 score for label 17. CV FMeasure = 0.166667
+F1 score for label 18. CV FMeasure = 0.166667
+F1 score for label 19. CV FMeasure = 0.000000
+F1 score for label 20. CV FMeasure = 0.166667
+F1 score for label 21. CV FMeasure = 0.000000
+F1 score for label 22. CV FMeasure = 0.760000
+F1 score for label 23. CV FMeasure = 0.100000
+F1 score for label 24. CV FMeasure = 0.921270
+F1 score for label 25. CV FMeasure = 0.995238
+F1 score for label 26. CV FMeasure = 0.100000
+F1 score for label 27. CV FMeasure = 0.000000
+F1 score for label 28. CV FMeasure = 0.100000
+F1 score for label 29. CV FMeasure = 0.000000
+F1 score for label 30. CV FMeasure = 0.000000
+F1 score for label 31. CV FMeasure = 0.666667
+F1 score for label 32. CV FMeasure = 0.715436
+F1 score for label 33. CV FMeasure = 0.855229
+F1 score for label 34. CV FMeasure = 0.000000
+F1 score for label 35. CV FMeasure = 0.650000
+F1 score for label 36. CV FMeasure = 0.186667
+F1 score for label 37. CV FMeasure = 0.638907
+F1 score for label 38. CV FMeasure = 0.106667
+F1 score for label 39. CV FMeasure = 0.883810
+F1 score for label 40. CV FMeasure = 0.316667
+F1 score for label 41. CV FMeasure = 0.000000
+F1 score for label 42. CV FMeasure = 0.858401
+F1 score for label 43. CV FMeasure = 0.000000
+F1 score for label 44. CV FMeasure = 0.854603
+F1 score for label 45. CV FMeasure = 0.901818
+Done predictions for dataset medical
+
+-----------------------------------------------------------
+Model Number 1
+F1 score for label 1. CV FMeasure = 0.909788
+F1 score for label 2. CV FMeasure = 0.780000
+F1 score for label 3. CV FMeasure = 0.000000
+F1 score for label 4. CV FMeasure = 0.000000
+F1 score for label 5. CV FMeasure = 0.924278
+F1 score for label 6. CV FMeasure = 0.000000
+F1 score for label 7. CV FMeasure = 0.000000
+F1 score for label 8. CV FMeasure = 0.000000
+F1 score for label 9. CV FMeasure = 0.000000
+F1 score for label 10. CV FMeasure = 0.861600
+F1 score for label 11. CV FMeasure = 0.253333
+F1 score for label 12. CV FMeasure = 0.000000
+F1 score for label 13. CV FMeasure = 0.000000
+F1 score for label 14. CV FMeasure = 0.000000
+F1 score for label 15. CV FMeasure = 0.333333
+F1 score for label 16. CV FMeasure = 0.000000
+F1 score for label 17. CV FMeasure = 0.200000
+F1 score for label 18. CV FMeasure = 0.066667
+F1 score for label 19. CV FMeasure = 0.000000
+F1 score for label 20. CV FMeasure = 0.000000
+F1 score for label 21. CV FMeasure = 0.000000
+F1 score for label 22. CV FMeasure = 0.600000
+F1 score for label 23. CV FMeasure = 0.000000
+F1 score for label 24. CV FMeasure = 0.847532
+F1 score for label 25. CV FMeasure = 0.993333
+F1 score for label 26. CV FMeasure = 0.100000
+F1 score for label 27. CV FMeasure = 0.000000
+F1 score for label 28. CV FMeasure = 0.100000
+F1 score for label 29. CV FMeasure = 0.000000
+F1 score for label 30. CV FMeasure = 0.000000
+F1 score for label 31. CV FMeasure = 0.780000
+F1 score for label 32. CV FMeasure = 0.696901
+F1 score for label 33. CV FMeasure = 0.853117
+F1 score for label 34. CV FMeasure = 0.000000
+F1 score for label 35. CV FMeasure = 0.703810
+F1 score for label 36. CV FMeasure = 0.253333
+F1 score for label 37. CV FMeasure = 0.673095
+F1 score for label 38. CV FMeasure = 0.240000
+F1 score for label 39. CV FMeasure = 0.889957
+F1 score for label 40. CV FMeasure = 0.195000
+F1 score for label 41. CV FMeasure = 0.000000
+F1 score for label 42. CV FMeasure = 0.877941
+F1 score for label 43. CV FMeasure = 0.000000
+F1 score for label 44. CV FMeasure = 0.967937
+F1 score for label 45. CV FMeasure = 0.910155
+Done predictions for dataset medical
