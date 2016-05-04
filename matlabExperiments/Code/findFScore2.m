@@ -4,9 +4,9 @@ function [ f ] = findFScore2( P, L, beta )
 % L is the original set of labels
 % P is the prediction
 
-TP = sum((L==1) .* (P==1));
-FP = sum((L==-1) .* (P==1));
-FN = sum((L==1) .* (P==-1));
+TP = sum(sum((L==1) .* (P==1)));
+FP = sum(sum((L==-1) .* (P==1)));
+FN = sum(sum((L==1) .* (P==-1)));
 precision = TP/(TP + FP);
 recall = TP / (TP + FN);
 f = (1 + beta^2)*(precision * recall)/(beta^2 * precision + recall);

@@ -1,4 +1,4 @@
-%% This script is to test the relation between cosnensus maximization and ground truth
+%% This script is to test the relation between cosnensus maximization and ground truth label wise
 % We take the prediction of each of the models and plot the consensus
 % against the F measure wrt ground truth, taking 1 %, 2 %, 3 %.. from top
 % and bottom of the instances.
