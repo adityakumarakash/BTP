@@ -5,11 +5,11 @@
 % N models are create using this strategy.
 
 %% Parameters
-N = 1; % N models are created
-DatasetName = 'medical';
+N = 10; % N models are created
+DatasetName = 'enron';
 k = 10;    % k fold CV is done
 beta = 1;
-expTotal = 1; % Num of experiments
+expTotal = 2; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
 addpath(libSVMPath);
@@ -31,10 +31,12 @@ dlmwrite([Folder, DatasetName, '.label'], labelSet, 'delimiter', '\t');
 %% get N number of models / predictions
 instanceCount = size(dataSet, 1); % instance count in training
 labelCount = size(labelSet, 2);   % labels count 
+featureCount = size(dataSet, 2);
 
 for expNum = 1 : expTotal
     for modelNum =  1 : N
         %% perfom randomization for each model generation
+        tic
         fprintf(fId, 'Model Number %d\n', modelNum);
         order = randperm(instanceCount);
         data = dataSet(order, :);
@@ -52,15 +54,9 @@ for expNum = 1 : expTotal
         for l = 1 : labelCount
             predictionLabel = zeros(instanceCount, 1);
             CArr(l) = -1; GammaArr(l) = -5; fMax = 0;
-            lowC = 3; highC = 10;
-            lowG = -4; highG = -4;
+            lowC = 3; highC = 8;
+            lowG = 2 - log2(featureCount); highG = 4 - log2(featureCount);
             
-            if modelNum > 1
-                lowC = CArr(l);
-                highC = CArr(l);
-                lowG = GammaArr(l);
-                highG = GammaArr(l);
-            end
             
             for c = lowC : highC             % from -1 to 10
                 for g = lowG : highG         % from -5 to -1
@@ -112,6 +108,7 @@ for expNum = 1 : expTotal
         % saved the generated prediction of the model by rearranging
         predictionLabels(revOrder, :) = predictionLabels;
         dlmwrite([Folder, DatasetName, '_model_', int2str(modelNum), '.y.', int2str(expNum)], predictionLabels, 'delimiter', '\t');
+        toc
     end
 end
 
