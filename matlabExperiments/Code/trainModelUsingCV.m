@@ -23,8 +23,8 @@ featureCount = size(trainData, 2);
 
 for l = 1 : labelCount
     CArr(l) = -1; GammaArr(l) = -5; fMax = 0;
-    lowC = 3; highC = 8;
-    lowG = 2 - log2(featureCount); highG = 4 - log2(featureCount);
+    lowC = 4; highC = 8;
+    lowG = 2 - log2(featureCount); highG = 3 - log2(featureCount);
     for c = lowC : highC
         for g = lowG : highG
             config.C = c;

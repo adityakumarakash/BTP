@@ -4,13 +4,17 @@
 
 %% setup configuration
 N = 10;                     % N models are created
-DatasetName = 'medical';
+DatasetName = 'enron';
 k = 5;                     % k fold CV is done for training the models
 expNum = 1;
 libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
 addpath(libSVMPath);
+fileName = '../Output/temp_expCase1.txt';
+fId = fopen(fileName, 'a');
 
+fprintf(fId, '\n--------------------------------------------------\n');
+fprintf(fId, 'Dataset %s\n', DatasetName);
 %% loading the data from the dataset
 [trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
 OL = testLabel;
@@ -31,18 +35,18 @@ parfor i = 1 : N
     trainDataModels{i} = trainData(index, :);
     trainLabelModels{i} = trainLabel(index, :);
 end
-fprintf('Training Data generated\n');
+fprintf(fId, 'Training Data generated\n');
 maxIteration = 2;
 agreementMatrix = zeros(N, maxIteration);
 
 for iteration = 1 : maxIteration
     %% train each model
     modelSet = cell(N, 1);
-    for i = 1 : N    
+    parfor i = 1 : N    
         M = trainModelUsingCV(trainDataModels{i}, trainLabelModels{i}, k);size(M)
-        modelSet{i} = M;size(modelSet{i})
-        fprintf('%d Model trained\n', i);
+        modelSet{i} = M;
     end
+    fprintf(fId, 'Models trained\n');
 
     %% prediction from each model
     P = zeros(size(testData, 1), size(testLabel, 2) * N);
@@ -51,11 +55,13 @@ for iteration = 1 : maxIteration
         P(:, (i - 1) * labelCount + 1 : i * labelCount) = predictLabels(modelSet{i}, testData);
     end
 
-    fprintf('Prediction Done\n');
+    fprintf(fId, 'Prediction Done\n');
 
     %% MLCM on the prediction
     index = sum(P, 2) ~= 0;
     P = P(index, :);
+    OL = testLabel;
+    OL(OL==0) = -1;
     OL = OL(index, :);
     A = P;
     P(P == 0) = -1;
@@ -68,10 +74,10 @@ for iteration = 1 : maxIteration
     L = eye(nClasses);
     B = repmat(L, nModels, 1);
     [U, Q] = MLCMrClosedForm(nInstances, nClasses, nModels, A, alpha, B);
-    fprintf('MLCM prediction done\n');
+    fprintf(fId, 'MLCM prediction done\n');
 
     L = binarizeProbDist(U, P);
-    fprintf('Binarization Done\n');
+    fprintf(fId, 'Binarization Done\n');
     labelPredictions = L;
     labelPredictions(L==-1) = 0;
     % get the agreement values of the instances
@@ -82,7 +88,7 @@ for iteration = 1 : maxIteration
 
 
     fScore = findFScore2(L, OL, 1);
-    fprintf('f score is %f\n', fScore);
+    fprintf(fId, 'f score is %f\n', fScore);
 
 
     % find predictions
@@ -108,17 +114,18 @@ for iteration = 1 : maxIteration
     agreementMatrix(:, iteration) = userCapacity;
 
     if iteration > 1
-        fprintf('Average Change in agreement = %f\n', sum(agreementMatrix(:, iteration) - agreementMatrix(:, iteration - 1)));
+        fprintf(fId, 'Average Change in agreement = %f\n', sum(agreementMatrix(:, iteration) - agreementMatrix(:, iteration - 1)));
     end
-
-    lthreshold = 0.8; rthreshold = 0.9;
+    %histogram(K);
+    lthreshold = 0.85; rthreshold = 0.95;
     improvementSet = (K >= lthreshold).*(K<rthreshold);
+    fprintf(fId, '%d instances\n', sum(improvementSet));
     improvementSet = cumsum(improvementSet).*improvementSet;
     improvementSet = improvementSet(improvementSet ~= 0);
     count = size(improvementSet, 1);
     for i = 1 : count
         inst = improvementSet(i);
-        modelNum = 1;
+        modelNum = 3;
         disModel = getDisagreementModels(L(inst, :), P(inst, :), modelNum);
         % appending the new instances
         for j = 1 : modelNum
@@ -130,4 +137,7 @@ for iteration = 1 : maxIteration
 
 end
 
+dlmwrite(fileName, agreementMatrix, '-append');
 disp(agreementMatrix);
+
+
