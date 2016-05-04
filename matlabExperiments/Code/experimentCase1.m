@@ -31,6 +31,8 @@ parfor i = 1 : N
 end
 fprintf('Training Data generated\n');
 
+
+
 %% train each model
 modelSet = cell(N, 1);
 for i = 1 : N    
@@ -72,3 +74,6 @@ K = zeros(nInstances, 1);
 parfor i = 1 : nInstances
     K(i) = findAgreement(L(i, :), P(i, :));
 end
+
+
+

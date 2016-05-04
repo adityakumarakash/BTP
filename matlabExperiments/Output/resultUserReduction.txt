@@ -1,0 +1,329 @@
+>> experimentUserReduction
+Experiment Number = 0
+MLCM prediction done
+Binarization Done
+f score is 0.841322
+MLCM prediction done
+Binarization Done
+f score is 0.843023
+change aggregate is 0.009736
+MLCM prediction done
+Binarization Done
+f score is 0.843064
+change aggregate is 0.003170
+MLCM prediction done
+Binarization Done
+f score is 0.844075
+change aggregate is 0.010937
+    0.9507    0.9526    0.9537    0.9566
+    0.9493    0.9496         0         0
+    0.9482         0         0         0
+    0.9488    0.9507    0.9488         0
+    0.9558    0.9567    0.9604    0.9607
+    0.9578    0.9603    0.9609    0.9627
+    0.9545    0.9559    0.9555    0.9569
+    0.9526    0.9555    0.9557    0.9570
+    0.9510    0.9513    0.9505    0.9544
+    0.9546    0.9524    0.9531    0.9523
+
+Experiment Number = 1
+MLCM prediction done
+Binarization Done
+f score is 0.846631
+MLCM prediction done
+Binarization Done
+f score is 0.849565
+change aggregate is 0.006014
+MLCM prediction done
+Binarization Done
+f score is 0.847303
+change aggregate is 0.005144
+MLCM prediction done
+Binarization Done
+f score is 0.847401
+change aggregate is 0.003935
+    0.9593    0.9608    0.9598    0.9593
+    0.9568    0.9593    0.9578    0.9624
+    0.9545    0.9555    0.9570    0.9570
+    0.9462         0         0         0
+    0.9557    0.9572    0.9572    0.9577
+    0.9567    0.9592    0.9592    0.9607
+    0.9502    0.9466    0.9507    0.9502
+    0.9472    0.9462    0.9462         0
+    0.9558    0.9584    0.9604    0.9589
+    0.9463    0.9453         0         0
+
+Experiment Number = 2
+MLCM prediction done
+Binarization Done
+f score is 0.842369
+MLCM prediction done
+Binarization Done
+f score is 0.844129
+change aggregate is 0.014615
+MLCM prediction done
+Binarization Done
+f score is 0.843685
+change aggregate is 0.002857
+MLCM prediction done
+Binarization Done
+f score is 0.841356
+change aggregate is 0.005021
+    0.9601    0.9600    0.9596    0.9596
+    0.9505    0.9545    0.9531    0.9565
+    0.9509    0.9544    0.9530         0
+    0.9539    0.9513         0         0
+    0.9560    0.9549    0.9545    0.9538
+    0.9551    0.9597    0.9572    0.9576
+    0.9545    0.9575    0.9616    0.9590
+    0.9571    0.9560    0.9591    0.9611
+    0.9475         0         0         0
+    0.9537    0.9582    0.9599    0.9623
+
+Experiment Number = 3
+MLCM prediction done
+Binarization Done
+f score is 0.838630
+MLCM prediction done
+Binarization Done
+f score is 0.837132
+change aggregate is 0.010382
+MLCM prediction done
+Binarization Done
+f score is 0.836997
+change aggregate is 0.001839
+MLCM prediction done
+Binarization Done
+f score is 0.834646
+change aggregate is -0.000197
+    0.9608    0.9612    0.9587    0.9618
+    0.9458         0         0         0
+    0.9594    0.9609    0.9613    0.9630
+    0.9533    0.9552    0.9557    0.9543
+    0.9556    0.9545    0.9555    0.9566
+    0.9563    0.9582    0.9587    0.9588
+    0.9483    0.9513    0.9523         0
+    0.9552    0.9577    0.9581    0.9567
+    0.9505    0.9488         0         0
+    0.9568    0.9587    0.9592    0.9558
+
+Experiment Number = 4
+MLCM prediction done
+Binarization Done
+f score is 0.842798
+MLCM prediction done
+Binarization Done
+f score is 0.842581
+change aggregate is 0.000290
+MLCM prediction done
+Binarization Done
+f score is 0.842279
+change aggregate is 0.010729
+MLCM prediction done
+Binarization Done
+f score is 0.840315
+change aggregate is 0.005749
+    0.9481    0.9491         0         0
+    0.9556    0.9546    0.9549    0.9569
+    0.9558    0.9534    0.9578    0.9608
+    0.9552    0.9547    0.9556    0.9600
+    0.9525    0.9550    0.9534    0.9509
+    0.9502    0.9508    0.9516         0
+    0.9457         0         0         0
+    0.9519    0.9525    0.9570    0.9558
+    0.9566    0.9556    0.9570    0.9585
+    0.9561    0.9567    0.9566    0.9551
+
+Experiment Number = 5
+MLCM prediction done
+Binarization Done
+f score is 0.838790
+MLCM prediction done
+Binarization Done
+f score is 0.839834
+change aggregate is 0.001012
+MLCM prediction done
+Binarization Done
+f score is 0.837479
+change aggregate is -0.000141
+MLCM prediction done
+Binarization Done
+f score is 0.837614
+change aggregate is 0.000499
+    0.9491         0         0         0
+    0.9547    0.9547    0.9542    0.9542
+    0.9511    0.9496         0         0
+    0.9563    0.9584    0.9543    0.9533
+    0.9576    0.9560    0.9535    0.9571
+    0.9551    0.9571    0.9567    0.9577
+    0.9495    0.9510    0.9516         0
+    0.9539    0.9540    0.9566    0.9555
+    0.9581    0.9581    0.9617    0.9596
+    0.9551    0.9536    0.9541    0.9541
+
+Experiment Number = 6
+MLCM prediction done
+Binarization Done
+f score is 0.845327
+MLCM prediction done
+Binarization Done
+f score is 0.846377
+change aggregate is -0.002636
+MLCM prediction done
+Binarization Done
+f score is 0.845164
+change aggregate is 0.007475
+MLCM prediction done
+Binarization Done
+f score is 0.844426
+change aggregate is 0.004859
+    0.9540    0.9550    0.9554    0.9540
+    0.9569    0.9563    0.9573    0.9603
+    0.9465         0         0         0
+    0.9507    0.9528    0.9542    0.9558
+    0.9574    0.9584    0.9594    0.9594
+    0.9524    0.9544    0.9538         0
+    0.9489    0.9459         0         0
+    0.9555    0.9565    0.9559    0.9570
+    0.9552    0.9527    0.9556    0.9566
+    0.9589    0.9553    0.9573    0.9568
+
+Experiment Number = 7
+MLCM prediction done
+Binarization Done
+f score is 0.846312
+MLCM prediction done
+Binarization Done
+f score is 0.846408
+change aggregate is 0.001304
+MLCM prediction done
+Binarization Done
+f score is 0.843931
+change aggregate is 0.002196
+MLCM prediction done
+Binarization Done
+f score is 0.844204
+change aggregate is 0.011652
+    0.9555    0.9560    0.9575    0.9589
+    0.9507    0.9512    0.9527    0.9561
+    0.9538    0.9537    0.9512    0.9537
+    0.9512    0.9492    0.9507    0.9556
+    0.9484    0.9469         0         0
+    0.9500    0.9515    0.9515    0.9503
+    0.9574    0.9594    0.9584    0.9568
+    0.9443         0         0         0
+    0.9470    0.9496    0.9491         0
+    0.9578    0.9558    0.9573    0.9597
+
+Experiment Number = 8
+MLCM prediction done
+Binarization Done
+f score is 0.844188
+MLCM prediction done
+Binarization Done
+f score is 0.844371
+change aggregate is 0.008754
+MLCM prediction done
+Binarization Done
+f score is 0.842845
+change aggregate is 0.003647
+MLCM prediction done
+Binarization Done
+f score is 0.842367
+change aggregate is -0.002863
+    0.9521    0.9551    0.9547    0.9527
+    0.9488    0.9513    0.9529    0.9519
+    0.9511    0.9520    0.9525    0.9531
+    0.9520    0.9545    0.9545    0.9546
+    0.9544    0.9547    0.9553    0.9549
+    0.9531    0.9520    0.9526    0.9505
+    0.9495    0.9499    0.9499         0
+    0.9425         0         0         0
+    0.9486    0.9495         0         0
+    0.9555    0.9549    0.9555    0.9575
+
+Experiment Number = 9
+MLCM prediction done
+Binarization Done
+f score is 0.846824
+MLCM prediction done
+Binarization Done
+f score is 0.845833
+change aggregate is 0.003597
+MLCM prediction done
+Binarization Done
+f score is 0.844167
+change aggregate is -0.000689
+MLCM prediction done
+Binarization Done
+f score is 0.843072
+change aggregate is 0.001954
+    0.9477         0         0         0
+    0.9579    0.9598    0.9578    0.9573
+    0.9520    0.9503         0         0
+    0.9582    0.9616    0.9611    0.9627
+    0.9569    0.9583    0.9589    0.9599
+    0.9539    0.9548    0.9549    0.9549
+    0.9612    0.9607    0.9607    0.9597
+    0.9599    0.9592    0.9618    0.9608
+    0.9531    0.9514    0.9525         0
+    0.9583    0.9587    0.9562    0.9582
+
+---------------------------------------------------------
+
+
+>> experimentUserReduction
+Experiment Number = 1
+MLCM prediction done
+Binarization Done
+f score is 0.143719
+MLCM prediction done
+Binarization Done
+f score is 0.142908
+change aggregate is 0.136118
+MLCM prediction done
+Binarization Done
+f score is 0.140427
+change aggregate is 0.114898
+MLCM prediction done
+Binarization Done
+f score is 0.145421
+change aggregate is 0.141355
+    0.1881    0.2036    0.2183    0.2366
+    0.1819    0.2019    0.2182    0.2425
+    0.1946    0.2171    0.2273    0.2464
+    0.1861    0.1970    0.2163    0.2361
+    0.1994    0.2089    0.2216    0.2417
+    0.1819    0.1962         0         0
+    0.1774         0         0         0
+    0.1979    0.2105    0.2228    0.2387
+    0.1794    0.1995    0.2183    0.2421
+    0.1933    0.2040    0.2146         0
+
+Experiment Number = 2
+MLCM prediction done
+Binarization Done
+f score is 0.155607
+MLCM prediction done
+Binarization Done
+f score is 0.149657
+change aggregate is 0.128563
+MLCM prediction done
+Binarization Done
+f score is 0.147217
+change aggregate is 0.141937
+MLCM prediction done
+Binarization Done
+f score is 0.149078
+change aggregate is 0.149645
+    0.1835    0.1972         0         0
+    0.1973    0.2102    0.2267    0.2469
+    0.1940    0.2049    0.2158         0
+    0.2016    0.2140    0.2286    0.2490
+    0.1783         0         0         0
+    0.1864    0.2039    0.2210    0.2466
+    0.1897    0.2016    0.2289    0.2487
+    0.1897    0.2093    0.2263    0.2446
+    0.1930    0.2055    0.2280    0.2496
+    0.1932    0.2104    0.2263    0.2500
+

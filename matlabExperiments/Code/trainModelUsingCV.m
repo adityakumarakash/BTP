@@ -19,12 +19,14 @@ CV = cvpartition(instanceCount, 'KFold', k);
 %% Train SVM on each partition and each label
 CArr = zeros(labelCount, 1);
 GammaArr = zeros(labelCount, 1);
-
+featureCount = size(trainData, 2);
 
 for l = 1 : labelCount
     CArr(l) = -1; GammaArr(l) = -5; fMax = 0;
-    for c = -1 : 9
-        for g = -4 : -1
+    lowC = 3; highC = 8;
+    lowG = 2 - log2(featureCount); highG = 4 - log2(featureCount);
+    for c = lowC : highC
+        for g = lowG : highG
             config.C = c;
             config.gamma = g;
             fAvg = 0;
@@ -68,10 +70,6 @@ for l = 1 : labelCount
     % train SVM on the optimum parameters
     config.C = CArr(l);
     config.gamma = GammaArr(l);
-    disp('----------------------');
-    disp(CArr(l));
-    disp(GammaArr(l));q
-    disp('----------------------');
     model = trainSVM([data(nzRow, :); data], [1; label(:, l)], config);   % train the model on the entire data
     if l == 1
         modelMatrix = model;

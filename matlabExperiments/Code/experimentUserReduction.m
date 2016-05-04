@@ -7,12 +7,12 @@
 experimentTotal = 1;    % Number of experiments
 N = 10;                 % count of models for each experiment
 DatasetName = 'medical';
-Folder = '../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/';
+Folder = '../ICDMDATA/';%'../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/';
 alpha = 1;
 
 
 
-for expNum = 1 : 2%experimentTotal
+for expNum = 0 : 9%experimentTotal
     % for each experiment this is repeated
     fprintf('Experiment Number = %d\n', expNum);
     models = ones(N, 1);
@@ -29,7 +29,7 @@ for expNum = 1 : 2%experimentTotal
         for j=1:N
             if models(j) == 1
                 i = i + 1;
-                temp = load([Folder, DatasetName, '_model_', int2str(j), '.y.', int2str(expNum)]);
+                temp = load([Folder, DatasetName, '_model_', int2str(j-1), '.y.', int2str(expNum)]);
                 P(:,(i-1)*nClasses+1:i*nClasses) = predictionConvert(temp);
             end
         end

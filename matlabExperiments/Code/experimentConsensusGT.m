@@ -6,13 +6,13 @@
 %% Parameters
 experimentTotal = 1;    % Number of experiments
 N = 10;                 % count of models for each experiment
-DatasetName = 'medical';
+DatasetName = 'enron';
 Folder = '../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/'; 
 alpha = 1;
 
 
 
-for expNum = 1 : 2%experimentTotal
+for expNum = 1 : 1%experimentTotal
     % for each experiment this is repeated
     fprintf('Experiment Number = %d\n', expNum);
     
@@ -73,7 +73,7 @@ for expNum = 1 : 2%experimentTotal
     FleisK = zeros(nInst, 1);
 
     for i = 1 : nInst
-        K(i) = findAgreement2(L(i, :), P(i, :));
+        K(i) = findAgreement(L(i, :), P(i, :));
         FMeasure(i) = findFScore2(L(i, :), OL(i, :), 1);
         FleisK(i) = fleissKappa(P(i, :), nClasses);
     end
