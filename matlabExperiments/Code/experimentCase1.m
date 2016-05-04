@@ -75,5 +75,11 @@ parfor i = 1 : nInstances
     K(i) = findAgreement(L(i, :), P(i, :));
 end
 
-
-
+lthreshold = 0.8; rthreshold = 0.9;
+improvementSet = (K >= lthreshold).*(K<rthreshold);
+improvementSet = cumsum(improvementSet).*improvementSet;
+improvementSet = improvementSet(improvementSet ~= 0);
+count = size(improvementSet, 1);
+for i = 1 : count
+    
+end
