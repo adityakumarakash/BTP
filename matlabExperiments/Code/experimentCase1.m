@@ -4,7 +4,7 @@
 
 %% setup configuration
 N = 10;                     % N models are created
-DatasetName = 'enron';
+DatasetName = 'medical';
 k = 5;                     % k fold CV is done for training the models
 expNum = 1;
 libSVMPath = '../../libsvm-3.21/matlab';
@@ -38,6 +38,7 @@ end
 fprintf(fId, 'Training Data generated\n');
 maxIteration = 2;
 agreementMatrix = zeros(N, maxIteration);
+instanceAgreement = zeros(size(testData, 1), maxIteration);
 
 for iteration = 1 : maxIteration
     %% train each model
@@ -91,30 +92,32 @@ for iteration = 1 : maxIteration
     fprintf(fId, 'f score is %f\n', fScore);
 
 
-    % find predictions
-    userConfidenceMicro = zeros(nModels, 1);
-    for i = 1 : nModels
-        userConfidenceMicro(i) = findKappaUser(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
-    end
+%     % find predictions
+%     userConfidenceMicro = zeros(nModels, 1);
+%     for i = 1 : nModels
+%         userConfidenceMicro(i) = findKappaUser(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
+%     end
+% 
+%     userConfidenceMacro = zeros(nModels, 1);
+%     for i = 1 : nModels
+%         userConfidenceMacro(i) = findUserConfidenceMacro(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
+%     end
+% 
+%     userConfidenceMean = zeros(nModels, 1);
+%     LRep = repmat(L, 1, nModels);
+%     K = findKappaUserLabel(P, LRep);          % kappa values for each user , label
+%     for i = 1 : nModels
+%         temp = K((i - 1) * nClasses + 1 : i * nClasses);
+%         userConfidenceMean(i) = sum(temp) / sum(temp~=-2);
+%     end
+% 
+%     userCapacity = userConfidenceMacro;
+%     agreementMatrix(:, iteration) = userCapacity;
 
-    userConfidenceMacro = zeros(nModels, 1);
-    for i = 1 : nModels
-        userConfidenceMacro(i) = findUserConfidenceMacro(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
-    end
-
-    userConfidenceMean = zeros(nModels, 1);
-    LRep = repmat(L, 1, nModels);
-    K = findKappaUserLabel(P, LRep);          % kappa values for each user , label
-    for i = 1 : nModels
-        temp = K((i - 1) * nClasses + 1 : i * nClasses);
-        userConfidenceMean(i) = sum(temp) / sum(temp~=-2);
-    end
-
-    userCapacity = userConfidenceMacro;
-    agreementMatrix(:, iteration) = userCapacity;
+    instanceAgreement(:, iteration) = K;
 
     if iteration > 1
-        fprintf(fId, 'Average Change in agreement = %f\n', sum(agreementMatrix(:, iteration) - agreementMatrix(:, iteration - 1)));
+        fprintf(fId, 'Average Change in agreement = %f\n', sum(instanceAgreement(:, iteration) - instanceAgreement(:, iteration - 1)));
     end
     %histogram(K);
     lthreshold = 0.85; rthreshold = 0.95;
@@ -136,8 +139,5 @@ for iteration = 1 : maxIteration
     end
 
 end
-
-dlmwrite(fileName, agreementMatrix, '-append');
-disp(agreementMatrix);
 
 
