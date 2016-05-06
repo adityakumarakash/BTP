@@ -6,9 +6,6 @@ function [ modelMatrix ] = trainModelUsingCVSelectiveOnLabel( trainData, trainLa
 %% Parameters
 k = CVFold;    
 beta = 1;
-size(trainData)
-size(trainLabel)
-size(labelIndex)
 data = trainData;
 label = trainLabel;
 
