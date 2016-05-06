@@ -2,19 +2,19 @@ function [ modelMatrix ] = trainModelUsingCVSelectiveOnLabel( trainData, trainLa
 %   Returns a matrix of SVM models for each of the labels
 %   Detailed explanation goes here
 
+%disp('OK');
 %% Parameters
 k = CVFold;    
 beta = 1;
-
+size(trainData)
+size(trainLabel)
+size(labelIndex)
 data = trainData;
 label = trainLabel;
 
 %% get N number of models / predictions
-instanceCount = size(trainData, 1); % instance count in training
 labelCount = size(trainLabel, 2);   % labels count 
 
-%% select CV folds
-CV = cvpartition(instanceCount, 'KFold', k);
 
 %% Train SVM on each partition and each label
 CArr = zeros(labelCount, 1);
@@ -26,8 +26,10 @@ for l = 1 : labelCount
     lowC = 4; highC = 8;
     lowG = 2 - log2(featureCount); highG = 3 - log2(featureCount);
     
-    trainData = data(labelIndex(l), :);
-    trainLabel = label(labelIndex(l), :);
+    trainData = data(labelIndex(:, l)==1, :);
+    trainLabel = label(labelIndex(:, l)==1, :);
+    instanceCount = size(trainData, 1); % instance count in training
+    CV = cvpartition(instanceCount, 'KFold', k);
     
     for c = lowC : highC
         for g = lowG : highG
@@ -47,7 +49,7 @@ for l = 1 : labelCount
                 if size(nzRow, 1) * size(nzRow, 2) == 0
                     nzRow = 1;
                 end
-                model = trainSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], config);
+                model = trainSVM([trainDataCV(nzRow, :); trainDataCV], [trainLabelCV(nzRow); trainLabelCV], config);
 
                 % prediction for training data
                 %[predictionLabelTrn, accuracyTrn, ~] = svmpredict(trainLabelCV, trainDataCV, model);
@@ -74,7 +76,7 @@ for l = 1 : labelCount
     % train SVM on the optimum parameters
     config.C = CArr(l);
     config.gamma = GammaArr(l);
-    model = trainSVM([trainData(nzRow, :); trainData], [1; trainLabel(:, l)], config);   % train the model on the entire data
+    model = trainSVM([trainData(nzRow, :); trainData], [trainLabel(nzRow, l); trainLabel(:, l)], config);   % train the model on the entire data
     if l == 1
         modelMatrix = model;
     else

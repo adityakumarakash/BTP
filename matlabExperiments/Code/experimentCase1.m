@@ -4,7 +4,7 @@
 
 %% setup configuration
 N = 10;                     % N models are created
-DatasetName = 'enron';
+DatasetName = 'medical';
 k = 5;                     % k fold CV is done for training the models
 expNum = 1;
 libSVMPath = '../../libsvm-3.21/matlab';

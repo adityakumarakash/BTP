@@ -10,7 +10,7 @@ expNum = 1;
 libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
 addpath(libSVMPath);
-fileName = '../Output/temp_expCase1.txt';
+fileName = '../Output/temp_expCase1InstLabel.txt';
 fId = fopen(fileName, 'a');
 
 fprintf(fId, '\n--------------------------------------------------\n');
@@ -45,7 +45,7 @@ instanceAgreement = zeros(size(testData, 1), maxIteration);
 for iteration = 1 : maxIteration
     %% train each model
     modelSet = cell(N, 1);
-    parfor i = 1 : N    
+    parfor i = 1 : N   
         M = trainModelUsingCVSelectiveOnLabel(trainDataModels{i}, trainLabelModels{i}, trainIndexLabels{i}, k);
         modelSet{i} = M;
     end
@@ -62,6 +62,8 @@ for iteration = 1 : maxIteration
 
     %% MLCM on the prediction
     index = sum(P, 2) ~= 0;
+    index = index.*cumsum(index);
+    index = index(index~=0);
     P = P(index, :);
     OL = testLabel;
     OL(OL==0) = -1;
@@ -116,7 +118,7 @@ for iteration = 1 : maxIteration
     userCapacity = userConfidenceMacro;
     agreementMatrix(:, iteration) = userCapacity;
 
-    instanceAgreement(:, iteration) = K;
+    instanceAgreement(index, iteration) = K;
 
     if iteration > 1
         fprintf(fId, 'Average Change in agreement = %f\n', sum(instanceAgreement(:, iteration) - instanceAgreement(:, iteration - 1)));
@@ -136,8 +138,8 @@ for iteration = 1 : maxIteration
         % appending the new instances
         for j = 1 : modelNum
             m = disModel(j);
-            pred = P(inst, (m - 1) * nClasses + 1, m * nClasses);
-            trainDataModels{m} = [trainDataModels{m}; testData(inst, :)];
+            pred = A(inst, (m - 1) * nClasses + 1 : m * nClasses);
+            trainDataModels{m} = [trainDataModels{m}; testData(index(inst), :)];
             % consensus output is given as GT
             trainLabelModels{m} = [trainLabelModels{m}; labelPredictions(inst, :)]; 
             trainIndexLabels{m} = [trainIndexLabels{m}; labelPredictions(inst, :) ~= pred];

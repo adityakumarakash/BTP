@@ -3275,3 +3275,25 @@ f score is 0.563318
 Average Change in agreement Instance = 2.677121
 Average Change in agreement User = 0.072521
 93 instances
+
+--------------------------------------------------
+Dataset medical
+
+--------------------------------------------------
+Dataset medical
+experiment = 1
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831399
+33 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826234
+Average Change in agreement Instance = 0.540530
+Average Change in agreement User = -0.092321
+30 instances

@@ -1,0 +1,102 @@
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.165089
+0 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.165089
+Average Change in agreement = 0.000000
+Average Change in agreement User = 0.000000
+0 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831870
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825333
+78 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823765
+84 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823373
+Average Change in agreement = 5.231313
+Average Change in agreement User = -0.017485
+91 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827957
+76 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.000000
+0 instances
