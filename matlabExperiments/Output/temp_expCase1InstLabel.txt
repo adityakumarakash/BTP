@@ -100,3 +100,17 @@ MLCM prediction done
 Binarization Done
 f score is 0.000000
 0 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done

@@ -45,7 +45,7 @@ for iteration = 1 : maxIteration
     %% train each model
     modelSet = cell(N, 1);
     parfor i = 1 : N    
-        M = trainModelUsingCV(trainDataModels{i}, trainLabelModels{i}, k);size(M)
+        M = trainModelUsingCV(trainDataModels{i}, trainLabelModels{i}, k);
         modelSet{i} = M;
     end
     fprintf(fId, 'Models trained\n');
@@ -61,6 +61,8 @@ for iteration = 1 : maxIteration
 
     %% MLCM on the prediction
     index = sum(P, 2) ~= 0;
+    index = index .* [1:size(P,1)]';
+    index = index(index~=0);
     P = P(index, :);
     OL = testLabel;
     OL(OL==0) = -1;
@@ -125,7 +127,7 @@ for iteration = 1 : maxIteration
     lthreshold = 0.86; rthreshold = 0.91;
     improvementSet = (K >= lthreshold).*(K<rthreshold);
     fprintf(fId, '%d instances\n', sum(improvementSet));
-    improvementSet = cumsum(improvementSet).*improvementSet;
+    improvementSet = [1:nInstances]' .* improvementSet;
     improvementSet = improvementSet(improvementSet ~= 0);
     count = size(improvementSet, 1);
     for i = 1 : count

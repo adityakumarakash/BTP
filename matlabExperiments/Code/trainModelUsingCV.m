@@ -43,7 +43,7 @@ for l = 1 : labelCount
                 if size(nzRow, 1) * size(nzRow, 2) == 0
                     nzRow = 1;
                 end
-                model = trainSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], config);
+                model = trainSVM([trainDataCV(nzRow, :); trainDataCV], [trainLabelCV(nzRow); trainLabelCV], config);
 
                 % prediction for training data
                 %[predictionLabelTrn, accuracyTrn, ~] = svmpredict(trainLabelCV, trainDataCV, model);
@@ -70,7 +70,7 @@ for l = 1 : labelCount
     % train SVM on the optimum parameters
     config.C = CArr(l);
     config.gamma = GammaArr(l);
-    model = trainSVM([data(nzRow, :); data], [1; label(:, l)], config);   % train the model on the entire data
+    model = trainSVM([data(nzRow, :); data], [label(nzRow, l); label(:, l)], config);   % train the model on the entire data
     if l == 1
         modelMatrix = model;
     else

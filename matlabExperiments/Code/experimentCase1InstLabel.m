@@ -61,8 +61,8 @@ for iteration = 1 : maxIteration
     fprintf(fId, 'Prediction Done\n');
 
     %% MLCM on the prediction
-    index = sum(P, 2) ~= 0;
-    index = index.*cumsum(index);
+    index = (sum(P, 2) ~= 0);
+    index = index .* [1:size(P,1)]';
     index = index(index~=0);
     P = P(index, :);
     OL = testLabel;
@@ -125,15 +125,15 @@ for iteration = 1 : maxIteration
         fprintf(fId, 'Average Change in agreement User = %f\n', sum(agreementMatrix(:, iteration) - agreementMatrix(:, iteration - 1)));
     end
     %histogram(K);
-    lthreshold = 0.85; rthreshold = 0.95;
+    lthreshold = 0.85; rthreshold = 0.90;
     improvementSet = (K >= lthreshold).*(K<rthreshold);
     fprintf(fId, '%d instances\n', sum(improvementSet));
-    improvementSet = cumsum(improvementSet).*improvementSet;
+    improvementSet = [1:nInstances]' .* improvementSet;
     improvementSet = improvementSet(improvementSet ~= 0);
     count = size(improvementSet, 1);
     for i = 1 : count
         inst = improvementSet(i);
-        modelNum = 3;
+        modelNum = 1;
         disModel = getDisagreementModels(L(inst, :), P(inst, :), modelNum);
         % appending the new instances
         for j = 1 : modelNum
