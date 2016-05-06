@@ -125,7 +125,7 @@ for iteration = 1 : maxIteration
         fprintf(fId, 'Average Change in agreement User = %f\n', sum(agreementMatrix(:, iteration) - agreementMatrix(:, iteration - 1)));
     end
     %histogram(K);
-    lthreshold = 0.85; rthreshold = 0.90;
+    lthreshold = 0.82; rthreshold = 0.87;
     fprintf(fId, 'Range = %f, %f\n', lthreshold, rthreshold);
     improvementSet = (K >= lthreshold).*(K<rthreshold);
     fprintf(fId, '%d instances\n', sum(improvementSet));
