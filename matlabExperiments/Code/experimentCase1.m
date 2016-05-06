@@ -136,7 +136,7 @@ for iteration = 1 : maxIteration
         disModel = getDisagreementModels(L(inst, :), P(inst, :), modelNum);
         % appending the new instances
         for j = 1 : modelNum
-            trainDataModels{disModel(j)} = [trainDataModels{disModel(j)}; testData(inst, :)];
+            trainDataModels{disModel(j)} = [trainDataModels{disModel(j)}; testData(index(inst), :)];
             % consensus output is given as GT
             trainLabelModels{disModel(j)} = [trainLabelModels{disModel(j)}; labelPredictions(inst, :)]; 
         end
