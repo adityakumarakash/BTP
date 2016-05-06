@@ -1721,3 +1721,1557 @@ Average Change in agreement = -0.015836
 0.81924,0.82653
 0.83284,0.82517
 0.83011,0.83307
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831309
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825333
+92 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.805932
+Average Change in agreement = -1.436183
+101 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.819760
+39 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820886
+Average Change in agreement = 4.077842
+42 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826613
+38 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829268
+Average Change in agreement = -0.581404
+42 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824468
+26 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821972
+Average Change in agreement = 0.988100
+33 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826558
+33 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827863
+Average Change in agreement = 2.254505
+36 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823215
+31 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823765
+Average Change in agreement Instance = -0.132468
+Average Change in agreement User = -0.078261
+38 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826291
+40 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821237
+Average Change in agreement Instance = -3.687143
+Average Change in agreement User = -0.078012
+33 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821954
+34 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828283
+Average Change in agreement Instance = -7.212403
+Average Change in agreement User = -0.278925
+46 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824324
+32 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820856
+Average Change in agreement Instance = -3.607039
+Average Change in agreement User = -0.159674
+44 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829960
+34 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820786
+Average Change in agreement Instance = -0.044567
+Average Change in agreement User = -0.119603
+59 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826846
+24 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824619
+Average Change in agreement Instance = -1.403166
+Average Change in agreement User = -0.228168
+57 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827446
+39 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.815947
+Average Change in agreement Instance = -2.089415
+Average Change in agreement User = -0.243360
+55 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.830832
+24 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828804
+Average Change in agreement Instance = 0.197167
+Average Change in agreement User = -0.058571
+27 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827680
+21 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824387
+Average Change in agreement Instance = 3.669653
+Average Change in agreement User = 0.006983
+24 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825418
+17 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828974
+Average Change in agreement Instance = -2.775788
+Average Change in agreement User = -0.050735
+21 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.830189
+21 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829659
+Average Change in agreement Instance = -1.769660
+Average Change in agreement User = -0.089101
+29 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823529
+89 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.819022
+Average Change in agreement Instance = 3.082486
+Average Change in agreement User = -0.220708
+100 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831978
+73 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.813115
+Average Change in agreement Instance = 9.002914
+Average Change in agreement User = -0.160808
+96 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822903
+70 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.811633
+Average Change in agreement Instance = 1.811117
+Average Change in agreement User = -0.146137
+93 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825589
+100 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.814229
+Average Change in agreement Instance = 2.720349
+Average Change in agreement User = -0.163846
+123 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.833333
+103 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.818845
+Average Change in agreement Instance = -1.221405
+Average Change in agreement User = -0.084333
+133 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822827
+44 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.816678
+Average Change in agreement Instance = -0.151695
+Average Change in agreement User = -0.044970
+52 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.830853
+58 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825100
+Average Change in agreement Instance = 2.237389
+Average Change in agreement User = -0.134404
+67 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829932
+55 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820444
+Average Change in agreement Instance = 1.790749
+Average Change in agreement User = -0.151446
+46 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822903
+24 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822973
+Average Change in agreement Instance = -4.081616
+Average Change in agreement User = -0.072702
+27 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822119
+20 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822045
+Average Change in agreement Instance = -1.703215
+Average Change in agreement User = -0.160476
+28 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831536
+27 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820067
+Average Change in agreement Instance = 0.186336
+Average Change in agreement User = -0.082484
+30 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826203
+12 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825249
+Average Change in agreement Instance = 0.790834
+Average Change in agreement User = -0.020766
+13 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.832323
+18 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.830291
+Average Change in agreement Instance = -0.408060
+Average Change in agreement User = -0.081132
+10 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.833670
+17 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821025
+Average Change in agreement Instance = 1.880892
+Average Change in agreement User = -0.010182
+11 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828669
+14 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825884
+Average Change in agreement Instance = 4.932380
+Average Change in agreement User = -0.013861
+15 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825971
+26 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822667
+Average Change in agreement Instance = 1.961574
+Average Change in agreement User = -0.059148
+28 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829368
+17 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.832425
+Average Change in agreement Instance = 1.735142
+Average Change in agreement User = 0.046335
+30 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826846
+17 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.818242
+Average Change in agreement Instance = 3.891950
+Average Change in agreement User = 0.036544
+21 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823768
+29 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827540
+Average Change in agreement Instance = 3.558579
+Average Change in agreement User = -0.053131
+26 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826435
+25 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827309
+Average Change in agreement Instance = 0.100431
+Average Change in agreement User = -0.114759
+29 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829630
+34 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821643
+Average Change in agreement Instance = 0.657202
+Average Change in agreement User = -0.063826
+34 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831186
+41 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822973
+Average Change in agreement Instance = 1.976235
+Average Change in agreement User = 0.004791
+44 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823765
+47 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.819085
+Average Change in agreement Instance = 3.441393
+Average Change in agreement User = -0.031602
+45 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.833446
+34 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825249
+Average Change in agreement Instance = 2.299030
+Average Change in agreement User = 0.021437
+30 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824966
+33 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824161
+Average Change in agreement Instance = 2.837842
+Average Change in agreement User = -0.065447
+42 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823134
+27 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.818242
+Average Change in agreement Instance = 2.637733
+Average Change in agreement User = -0.005902
+34 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828781
+16 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820717
+Average Change in agreement Instance = 0.436497
+Average Change in agreement User = -0.009094
+22 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.832206
+14 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827448
+Average Change in agreement Instance = 1.482738
+Average Change in agreement User = -0.044874
+20 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.830976
+28 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824632
+Average Change in agreement Instance = 3.627331
+Average Change in agreement User = -0.084041
+30 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831536
+26 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.835358
+Average Change in agreement Instance = -2.434664
+Average Change in agreement User = -0.072953
+25 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821809
+20 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828648
+Average Change in agreement Instance = -2.997894
+Average Change in agreement User = -0.080105
+20 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826808
+29 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828552
+Average Change in agreement Instance = -1.422683
+Average Change in agreement User = -0.088350
+18 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.830748
+22 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824397
+Average Change in agreement Instance = -1.474608
+Average Change in agreement User = -0.081909
+29 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827770
+23 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821333
+Average Change in agreement Instance = 0.072339
+Average Change in agreement User = -0.012526
+16 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827128
+28 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820955
+Average Change in agreement Instance = 1.811209
+Average Change in agreement User = -0.078613
+29 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827309
+36 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820955
+Average Change in agreement Instance = 0.736882
+Average Change in agreement User = -0.165706
+42 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831643
+41 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827309
+Average Change in agreement Instance = 3.878220
+Average Change in agreement User = -0.017417
+33 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.833220
+46 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825269
+Average Change in agreement Instance = 2.064081
+Average Change in agreement User = -0.094504
+46 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827913
+49 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823920
+Average Change in agreement Instance = 2.119142
+Average Change in agreement User = -0.083507
+55 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.837082
+33 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825118
+Average Change in agreement Instance = 3.979542
+Average Change in agreement User = -0.016855
+38 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.833673
+26 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825566
+Average Change in agreement Instance = 1.090592
+Average Change in agreement User = -0.148970
+49 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826058
+28 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821095
+Average Change in agreement Instance = 3.489710
+Average Change in agreement User = -0.024658
+28 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824074
+16 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823686
+Average Change in agreement Instance = 1.167417
+Average Change in agreement User = -0.014686
+27 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.833333
+30 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821405
+Average Change in agreement Instance = 1.569370
+Average Change in agreement User = -0.071233
+27 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.835150
+11 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828938
+Average Change in agreement Instance = 3.447422
+Average Change in agreement User = -0.053343
+9 instances
+
+--------------------------------------------------
+Dataset medical
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829071
+7 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826347
+Average Change in agreement Instance = 0.581192
+Average Change in agreement User = -0.045697
+7 instances
+
+--------------------------------------------------
+Dataset medical
+experiment = 1
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821881
+9 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825118
+Average Change in agreement Instance = -0.245993
+Average Change in agreement User = -0.045365
+8 instances
+experiment = 2
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.833894
+10 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.836927
+Average Change in agreement Instance = -0.633655
+Average Change in agreement User = -0.020231
+5 instances
+experiment = 3
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.820000
+10 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826234
+Average Change in agreement Instance = -2.984567
+Average Change in agreement User = -0.000780
+11 instances
+experiment = 4
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829368
+13 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.819149
+Average Change in agreement Instance = 3.160218
+Average Change in agreement User = 0.049685
+7 instances
+experiment = 5
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825440
+14 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822570
+Average Change in agreement Instance = -4.092224
+Average Change in agreement User = -0.203648
+10 instances
+experiment = 6
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822903
+13 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827260
+Average Change in agreement Instance = -0.992014
+Average Change in agreement User = -0.055663
+10 instances
+
+--------------------------------------------------
+Dataset medical
+experiment = 1
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826884
+28 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827725
+Average Change in agreement Instance = 3.769162
+Average Change in agreement User = -0.018333
+27 instances
+experiment = 2
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.830957
+24 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823451
+Average Change in agreement Instance = 1.540923
+Average Change in agreement User = 0.034210
+19 instances
+experiment = 3
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.833445
+24 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.831882
+Average Change in agreement Instance = 0.256714
+Average Change in agreement User = -0.082771
+27 instances
+experiment = 4
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824950
+22 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.830464
+Average Change in agreement Instance = 4.064910
+Average Change in agreement User = -0.158219
+32 instances
+experiment = 5
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823845
+25 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.817819
+Average Change in agreement Instance = -0.515482
+Average Change in agreement User = -0.102826
+19 instances
+experiment = 6
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828435
+17 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824728
+Average Change in agreement Instance = 0.070900
+Average Change in agreement User = 0.009905
+29 instances
+
+--------------------------------------------------
+Dataset medical
+experiment = 1
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829630
+18 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821571
+Average Change in agreement Instance = 2.845821
+Average Change in agreement User = -0.025084
+21 instances
+experiment = 2
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827218
+25 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826756
+Average Change in agreement Instance = 1.242023
+Average Change in agreement User = -0.158406
+26 instances
+experiment = 3
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829071
+16 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825824
+Average Change in agreement Instance = 1.666769
+Average Change in agreement User = -0.019185
+21 instances
+experiment = 4
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821862
+28 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826146
+Average Change in agreement Instance = 5.718125
+Average Change in agreement User = -0.017415
+20 instances
+experiment = 5
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827770
+24 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826347
+Average Change in agreement Instance = -0.352614
+Average Change in agreement User = -0.048845
+25 instances
+experiment = 6
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.832664
+23 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827540
+Average Change in agreement Instance = 1.794936
+Average Change in agreement User = 0.023305
+16 instances
+
+--------------------------------------------------
+Dataset medical
+experiment = 1
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.829037
+25 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.824490
+Average Change in agreement Instance = 2.456438
+Average Change in agreement User = -0.026955
+37 instances
+experiment = 2
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.822517
+24 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.818242
+Average Change in agreement Instance = -2.301405
+Average Change in agreement User = -0.148967
+37 instances
+experiment = 3
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826846
+26 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.828418
+Average Change in agreement Instance = -3.490148
+Average Change in agreement User = -0.144866
+40 instances
+experiment = 4
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.825763
+25 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.815456
+Average Change in agreement Instance = -2.903257
+Average Change in agreement User = -0.055081
+31 instances
+experiment = 5
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.823607
+27 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.821828
+Average Change in agreement Instance = 1.092836
+Average Change in agreement User = -0.124947
+28 instances
+experiment = 6
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.826756
+31 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.827309
+Average Change in agreement Instance = -0.515751
+Average Change in agreement User = -0.063957
+30 instances
+
+--------------------------------------------------
+Dataset enron
+experiment = 1
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.563713
+78 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.564074
+Average Change in agreement Instance = 0.466129
+Average Change in agreement User = -0.039811
+90 instances
+
+--------------------------------------------------
+Dataset enron
+experiment = 1
+Training Data generated
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.568093
+96 instances
+Models trained
+Prediction Done
+MLCM prediction done
+Binarization Done
+f score is 0.563318
+Average Change in agreement Instance = 2.677121
+Average Change in agreement User = 0.072521
+93 instances

@@ -4,7 +4,7 @@
 
 %% setup configuration
 N = 10;                     % N models are created
-DatasetName = 'medical';
+DatasetName = 'enron';
 k = 5;                     % k fold CV is done for training the models
 expNum = 1;
 libSVMPath = '../../libsvm-3.21/matlab';
@@ -23,7 +23,8 @@ OL(OL==0) = -1;
 % testData = testData(100 : 200, :);
 % trainLabel = trainLabel(100 : 200, :);
 % testLabel = testLabel(100 : 200, :);
-
+for exp = 1 : 1
+    fprintf(fId, 'experiment = %d\n', exp);
 %% Partition data for training each of the models
 trainDataModels = cell(N, 1);
 trainLabelModels = cell(N, 1);
@@ -98,10 +99,10 @@ for iteration = 1 : maxIteration
 %         userConfidenceMicro(i) = findKappaUser(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
 %     end
 % 
-%     userConfidenceMacro = zeros(nModels, 1);
-%     for i = 1 : nModels
-%         userConfidenceMacro(i) = findUserConfidenceMacro(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
-%     end
+    userConfidenceMacro = zeros(nModels, 1);
+    for i = 1 : nModels
+        userConfidenceMacro(i) = findUserConfidenceMacro(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
+    end
 % 
 %     userConfidenceMean = zeros(nModels, 1);
 %     LRep = repmat(L, 1, nModels);
@@ -111,16 +112,17 @@ for iteration = 1 : maxIteration
 %         userConfidenceMean(i) = sum(temp) / sum(temp~=-2);
 %     end
 % 
-%     userCapacity = userConfidenceMacro;
-%     agreementMatrix(:, iteration) = userCapacity;
+    userCapacity = userConfidenceMacro;
+    agreementMatrix(:, iteration) = userCapacity;
 
-    instanceAgreement(:, iteration) = K;
+    instanceAgreement(index, iteration) = K;
 
     if iteration > 1
-        fprintf(fId, 'Average Change in agreement = %f\n', sum(instanceAgreement(:, iteration) - instanceAgreement(:, iteration - 1)));
+        fprintf(fId, 'Average Change in agreement Instance = %f\n', sum(instanceAgreement(:, iteration) - instanceAgreement(:, iteration - 1)));
+        fprintf(fId, 'Average Change in agreement User = %f\n', sum(agreementMatrix(:, iteration) - agreementMatrix(:, iteration - 1)));
     end
     %histogram(K);
-    lthreshold = 0.85; rthreshold = 0.95;
+    lthreshold = 0.86; rthreshold = 0.91;
     improvementSet = (K >= lthreshold).*(K<rthreshold);
     fprintf(fId, '%d instances\n', sum(improvementSet));
     improvementSet = cumsum(improvementSet).*improvementSet;
@@ -128,7 +130,7 @@ for iteration = 1 : maxIteration
     count = size(improvementSet, 1);
     for i = 1 : count
         inst = improvementSet(i);
-        modelNum = 3;
+        modelNum = 1;
         disModel = getDisagreementModels(L(inst, :), P(inst, :), modelNum);
         % appending the new instances
         for j = 1 : modelNum
@@ -139,5 +141,5 @@ for iteration = 1 : maxIteration
     end
 
 end
-
+end
 
