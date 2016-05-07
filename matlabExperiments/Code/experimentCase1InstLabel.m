@@ -24,6 +24,9 @@ OL(OL==0) = -1;
 % trainLabel = trainLabel(100 : 200, :);
 % testLabel = testLabel(100 : 200, :);
 
+for expNum = 1 : 5
+    fprintf(fId, 'experiment number = %d\n', expNum);
+
 %% Partition data for training each of the models
 trainDataModels = cell(N, 1);
 trainLabelModels = cell(N, 1);
@@ -125,7 +128,8 @@ for iteration = 1 : maxIteration
         fprintf(fId, 'Average Change in agreement User = %f\n', sum(agreementMatrix(:, iteration) - agreementMatrix(:, iteration - 1)));
     end
     %histogram(K);
-    lthreshold = 0.85; rthreshold = 0.90;
+    lthreshold = 0.86; rthreshold = 0.9;
+    fprintf(fId, 'the range is %f, %f\n', lthreshold, rthreshold);
     improvementSet = (K >= lthreshold).*(K<rthreshold);
     fprintf(fId, '%d instances\n', sum(improvementSet));
     improvementSet = [1:nInstances]' .* improvementSet;
@@ -146,4 +150,5 @@ for iteration = 1 : maxIteration
         end
     end
 
+end
 end

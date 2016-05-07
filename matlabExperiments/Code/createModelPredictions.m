@@ -7,9 +7,9 @@
 %% Parameters
 N = 10; % N models are created
 DatasetName = 'enron';
-k = 10;    % k fold CV is done
+k = 5;    % k fold CV is done
 beta = 1;
-expTotal = 2; % Num of experiments
+expTotal = 1; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
 config.libSVMPath = libSVMPath;
 addpath(libSVMPath);
@@ -108,6 +108,7 @@ for expNum = 1 : expTotal
         % saved the generated prediction of the model by rearranging
         predictionLabels(revOrder, :) = predictionLabels;
         dlmwrite([Folder, DatasetName, '_model_', int2str(modelNum), '.y.', int2str(expNum)], predictionLabels, 'delimiter', '\t');
+        
         toc
     end
 end
