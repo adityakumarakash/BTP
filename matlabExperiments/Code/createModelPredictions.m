@@ -5,7 +5,7 @@
 % N models are create using this strategy.
 
 %% Parameters
-N = 10; % N models are created
+N = 1; % N models are created
 DatasetName = 'enron';
 k = 5;    % k fold CV is done
 beta = 1;
@@ -108,7 +108,9 @@ for expNum = 1 : expTotal
         % saved the generated prediction of the model by rearranging
         predictionLabels(revOrder, :) = predictionLabels;
         dlmwrite([Folder, DatasetName, '_model_', int2str(modelNum), '.y.', int2str(expNum)], predictionLabels, 'delimiter', '\t');
-        
+        accuracy = (predictionLabels == labelSet) / (size(labelSet, 1) * size(labelSet, 2));
+        fMeasure = findFScore(predictionLabels, labelSet, 1);
+        fprintf(fId, 'Accuracy = %f, F1 Score = %f\n', accuracy, fMeasure);
         toc
     end
 end
