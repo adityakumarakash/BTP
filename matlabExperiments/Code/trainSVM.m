@@ -26,9 +26,12 @@ function [model] = trainSVM(features, labels, config)
 
 % trains the SVM model
         %% LibSVM Train
-          params = ['-s 0 -t 2 -c ', num2str(2^config.C), ' -g ', num2str(2^config.gamma)];   % C-SVC, radial function
-          %params = ['-s 0 -t 2 -c ', num2str(2^config.C)]; 
+          %params = ['-s 0 -t 2 -c ', num2str(2^config.C), ' -g ', num2str(2^config.gamma)];   % C-SVC, radial function
+          params = ['-s 0 -t 0 -c ', num2str(2^config.C)]; 
           %params = ['-s 0 -t 2 -c ', num2str(2^config.C), ' -g ', num2str(1.0/config.gamma)];   % C-SVC, radial function
+          disp('Starting training');
+          tic
           model = svmtrain(labels, features, params); 
-      
+        toc
+        disp('Done training');
 end

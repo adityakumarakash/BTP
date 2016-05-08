@@ -32,11 +32,14 @@ instanceCount = size(dataSet, 1); % instance count in training
 labelCount = size(labelSet, 2);   % labels count 
 featureCount = size(dataSet, 2);
 
+disp('starting model training');
 for expNum = 1 : expTotal
+    disp(strcat('experiment ', num2str(expNum)));
     for modelNum =  1 : N
         %% perfom randomization for each model generation
         tic
         fprintf(fId, 'Model Number %d\n', modelNum);
+        disp(strcat('model ', num2str(modelNum)));
         order = randperm(instanceCount);
         data = dataSet(order, :);
         label = labelSet(order, :);
@@ -51,12 +54,13 @@ for expNum = 1 : expTotal
         GammaArr = zeros(labelCount, 1);
         predictionLabels = zeros(instanceCount, labelCount);
         fMArr = zeros(labelCount, 1);
-        parfor l = 1 : labelCount
+        parfor l = 1 : 1
+            disp(strcat('label ', num2str(l)));
             predictionLabel = zeros(instanceCount, 1);
             %CArr(l) = -1; GammaArr(l) = -5; 
             fMax = 0;
-            lowC = 3; highC = 8;
-            lowG = 2 - log2(featureCount); highG = 4 - log2(featureCount);
+            lowC = 5; highC = 5; % 3, 8
+            lowG = 2 - log2(featureCount); highG = 2 - log2(featureCount); % 2,4
             
             bestC = lowC; bestG = lowG;
             for c = lowC : highC             % from -1 to 10
