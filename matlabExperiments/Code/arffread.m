@@ -135,8 +135,12 @@ end
 %}
 strData = wholeData(lineData:end);
 data = zeros(size(strData, 1), size(attributeName, 2));
-for i = 1:size(strData,1)
+parfor i = 1:size(strData,1)
     line = strsplit(strData{i}, {',', '{', '}', ' '});
     index = cellfun(@str2num, line(2:2:end - 1));
-    data(i, index + 1) = 1;
+    values = cellfun(@str2num, line(3:2:end - 1));
+    temp = zeros(1, size(attributeName, 2));
+    temp(index + 1) = values;
+    data(i, :) = temp;
+    %data(i, index + 1) = values;
 end

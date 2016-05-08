@@ -6,17 +6,16 @@
 
 %% Parameters
 N = 1; % N models are created
-DatasetName = 'enron';
+DatasetName = 'rcv1subset1';
 k = 5;    % k fold CV is done
 beta = 1;
 expTotal = 1; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
-config.libSVMPath = libSVMPath;
 addpath(libSVMPath);
 Folder = '../Output/modelsCV/';
 fId = fopen(strcat(Folder, 'outputs.txt'), 'a');
 fprintf(fId, '\n-----------------------------------------------------------\n');
-
+fprintf(fId, 'Dataset = %s\n', DatasetName);
 %% loading the data from the dataset
 [trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
 dataSet = [trainData; testData];
@@ -51,20 +50,20 @@ for expNum = 1 : expTotal
         CArr = zeros(labelCount, 1);
         GammaArr = zeros(labelCount, 1);
         predictionLabels = zeros(instanceCount, labelCount);
-        for l = 1 : labelCount
+        fMArr = zeros(labelCount, 1);
+        parfor l = 1 : labelCount
             predictionLabel = zeros(instanceCount, 1);
-            CArr(l) = -1; GammaArr(l) = -5; fMax = 0;
+            %CArr(l) = -1; GammaArr(l) = -5; 
+            fMax = 0;
             lowC = 3; highC = 8;
             lowG = 2 - log2(featureCount); highG = 4 - log2(featureCount);
             
-            
+            bestC = lowC; bestG = lowG;
             for c = lowC : highC             % from -1 to 10
                 for g = lowG : highG         % from -5 to -1
-                    config.C = c;
-                    config.gamma = g;
                     fAvg = 0;
                     predictionLabelTemp = zeros(instanceCount, 1);
-                    parfor i = 1 : k
+                    for i = 1 : k                    
                         trainDataCV = data(CV.training(i), :);
                         trainLabelCV = label(CV.training(i), l);
                         testDataCV = data(CV.test(i), :);
@@ -76,10 +75,10 @@ for expNum = 1 : expTotal
                             nzRow = 1;
                         end
                         % train SVM
-                        model = trainSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], config);
+                        model = trainRbfSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], c, g);
 
                         % prediction for training data
-                        [predictionLabelTrn, accuracyTrn, ~] = svmpredict(trainLabelCV, trainDataCV, model);
+                        %[predictionLabelTrn, accuracyTrn, ~] = svmpredict(trainLabelCV, trainDataCV, model);
                         [predictionLabelCV, accuracyCV, ~] = svmpredict(testLabelCV, testDataCV, model);
                         f = findFScore(predictionLabelCV, testLabelCV, beta);
                         fAvg = fAvg + f;
@@ -92,8 +91,8 @@ for expNum = 1 : expTotal
 
                     if fAvg > fMax
                         fMax = fAvg;
-                        CArr(l) = config.C;
-                        GammaArr(l) = config.gamma;
+                        bestC = c;
+                        bestG = g;
                         predictionLabel = predictionLabelTemp;
                     end
                 end
@@ -102,17 +101,28 @@ for expNum = 1 : expTotal
 
             % prediction for the test dataset
             predictionLabels(:, l) = predictionLabel;
-            fprintf(fId, 'F1 score for label %d. CV FMeasure = %f\n', l, fMax);
+            %fprintf(fId, 'F1 score for label %d. CV FMeasure = %f\n', l, fMax);
+            fMArr(l) = fMax;
+            CArr(l) = bestC;
+            GammaArr(l) = bestG;
+            disp(strcat(num2str(l), ' done'));
         end
 
         % saved the generated prediction of the model by rearranging
         predictionLabels(revOrder, :) = predictionLabels;
         dlmwrite([Folder, DatasetName, '_model_', int2str(modelNum), '.y.', int2str(expNum)], predictionLabels, 'delimiter', '\t');
-        accuracy = (predictionLabels == labelSet) / (size(labelSet, 1) * size(labelSet, 2));
+        accuracy = sum(sum(predictionLabels == labelSet)) / (size(labelSet, 1) * size(labelSet, 2));
         fMeasure = findFScore(predictionLabels, labelSet, 1);
+        for l = 1 : labelCount
+            fprintf(fId, 'F1 score for label %d. CV FMeasure = %f\n', l, fMArr(l));
+        end
         fprintf(fId, 'Accuracy = %f, F1 Score = %f\n', accuracy, fMeasure);
         toc
     end
+    
+    
+
 end
 
 fprintf(fId, 'Done predictions for dataset %s\n', DatasetName);
+exit;
