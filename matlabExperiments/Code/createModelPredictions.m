@@ -79,11 +79,16 @@ for expNum = 1 : expTotal
                             nzRow = 1;
                         end
                         % train SVM
-                        model = trainRbfSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], c, g);
-
+                        tic
+                        fitcsvm([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV]);
+                        toc
+                        break;
+                        %model = trainRbfSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], c, g);
+                        
+                        
                         % prediction for training data
                         %[predictionLabelTrn, accuracyTrn, ~] = svmpredict(trainLabelCV, trainDataCV, model);
-                        [predictionLabelCV, accuracyCV, ~] = svmpredict(testLabelCV, testDataCV, model);
+                        %[predictionLabelCV, accuracyCV, ~] = svmpredict(testLabelCV, testDataCV, model);
                         f = findFScore(predictionLabelCV, testLabelCV, beta);
                         fAvg = fAvg + f;
                         temp = zeros(instanceCount, 1);

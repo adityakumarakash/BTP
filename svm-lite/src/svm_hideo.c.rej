@@ -1,0 +1,69 @@
+--- svm_hideo.c	2004-09-03 16:00:26.000000000 -0400
++++ svm_hideo.c	2005-02-16 09:22:04.879654776 -0500
+@@ -15,9 +15,15 @@
+ /*   use of this software.                                             */
+ /*                                                                     */
+ /***********************************************************************/
++#include <math.h>
++#include "svm_common.h"
+ 
+-# include <math.h>
+-# include "svm_common.h"
++#include "global.h"
++
++#ifdef MATLAB_MEX
++#include "mex.h" 
++#include "matrix.h"
++#endif
+ 
+ /* 
+   solve the quadratic programming problem
+@@ -44,27 +50,33 @@
+ 
+ /* /////////////////////////////////////////////////////////////// */
+ 
+-# define DEF_PRECISION          1E-5
+-# define DEF_MAX_ITERATIONS     200
+-# define DEF_LINDEP_SENSITIVITY 1E-8
+-# define EPSILON_HIDEO          1E-20
+-# define EPSILON_EQ             1E-5
++/* the following were moved to global.h */
++
++/* #ifndef MATLAB */
++
++/* # define DEF_PRECISION          1E-5 */
++/* # define DEF_MAX_ITERATIONS     200 */
++/* # define DEF_LINDEP_SENSITIVITY 1E-8 */
++/* # define EPSILON_HIDEO          1E-20 */
++/* # define EPSILON_EQ             1E-5 */
++
++/* #endif  */
+ 
+ double *optimize_qp(QP *, double *, long, double *, LEARN_PARM *);
+-double *primal=0,*dual=0;
+-long   precision_violations=0;
+-double opt_precision=DEF_PRECISION;
+-long   maxiter=DEF_MAX_ITERATIONS;
+-double lindep_sensitivity=DEF_LINDEP_SENSITIVITY;
+-double *buffer;
+-long   *nonoptimal;
++/* double *primal=0,*dual=0;  */
++/* long   precision_violations=0;  */
++/* double opt_precision=DEF_PRECISION;  */
++/* long   maxiter=DEF_MAX_ITERATIONS; */
++/* double lindep_sensitivity=DEF_LINDEP_SENSITIVITY; */
++/* double *buffer;  */
++/* long   *nonoptimal;  */
+ 
+-long  smallroundcount=0;
+-long  roundnumber=0;
++/* long  smallroundcount=0; */
++/* long  roundnumber=0; */
+ 
+ /* /////////////////////////////////////////////////////////////// */
+ 
+-void *my_malloc();
++/* void *my_malloc(); */
+ 
+ int optimize_hildreth_despo(long,long,double,double,double,long,long,long,double,double *,
+ 			    double *,double *,double *,double *,double *,

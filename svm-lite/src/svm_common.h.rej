@@ -1,0 +1,104 @@
+--- svm_common.h	2004-09-03 15:22:55.000000000 -0400
++++ svm_common.h	2005-02-16 09:22:04.879654776 -0500
+@@ -19,36 +19,42 @@
+ #ifndef SVM_COMMON
+ #define SVM_COMMON
+ 
+-# define MAXSHRINK     50000    /* maximum number of shrinking rounds */
+-# define MAXFEATNUM 99999999    /* maximum feature number (must be in
++#define MAXSHRINK     50000    /* maximum number of shrinking rounds */
++#define MAXFEATNUM 99999999    /* maximum feature number (must be in
+ 			  	   valid range of long int type!) */
++#define KPARM_CUSTOM_LEN 128   /* define length of custom field in kernel_param */
+ 
+-# include <stdio.h>
+-# include <ctype.h>
+-# include <math.h>
+-# include <string.h>
+-# include <stdlib.h>
+-# include <time.h> 
+-# include <float.h>
+-
+-# define VERSION       "V6.01"
+-# define VERSION_DATE  "01.09.04"
++#include <stdio.h>
++#include <ctype.h>
++#include <math.h>
++#include <string.h>
++#include <stdlib.h>
++#include <time.h> 
++#include <float.h>
++
++#ifdef MATLAB_MEX
++#define VERSION       "V6.01+MEX"
++#define VERSION_DATE  "01.01.05"
++#else
++#define VERSION       "V6.01"
++#define VERSION_DATE  "01.09.04"
++#endif
+ 
+-# define CFLOAT  float       /* the type of float to use for caching */
++#define CFLOAT  float       /* the type of float to use for caching */
+                              /* kernel evaluations. Using float saves */
+                              /* us some memory, but you can use double, too */
+-# define FNUM    long        /* the type used for storing feature ids */
+-# define FVAL    float       /* the type used for storing feature values */
++#define FNUM    long        /* the type used for storing feature ids */
++#define FVAL    float       /* the type used for storing feature values */
+ 
+-# define LINEAR  0           /* linear kernel type */
+-# define POLY    1           /* polynoial kernel type */
+-# define RBF     2           /* rbf kernel type */
+-# define SIGMOID 3           /* sigmoid kernel type */
+-
+-# define CLASSIFICATION 1    /* train classification model */
+-# define REGRESSION     2    /* train regression model */
+-# define RANKING        3    /* train ranking model */
+-# define OPTIMIZATION   4    /* train on general set of constraints */
++#define LINEAR  0           /* linear kernel type */
++#define POLY    1           /* polynoial kernel type */
++#define RBF     2           /* rbf kernel type */
++#define SIGMOID 3           /* sigmoid kernel type */
++
++#define CLASSIFICATION 1    /* train classification model */
++#define REGRESSION     2    /* train regression model */
++#define RANKING        3    /* train ranking model */
++#define OPTIMIZATION   4    /* train on general set of constraints */
+ 
+ typedef struct word {
+   FNUM    wnum;	               /* word number */
+@@ -187,7 +193,7 @@
+   double  rbf_gamma;
+   double  coef_lin;
+   double  coef_const;
+-  char    custom[50];    /* for user supplied kernel */
++  char    custom[KPARM_CUSTOM_LEN];    /* for user supplied kernel */
+ } KERNEL_PARM;
+ 
+ typedef struct model {
+@@ -208,6 +214,16 @@
+ 						 folding */
+   double  maxdiff;                            /* precision, up to which this 
+ 						 model is accurate */
++
++#ifdef MATLAB_MEX
++  double r_delta_sq;                /* store additional params for mex */
++  double r_delta_avg;
++  double model_length;
++  double loss;
++  double vcdim;
++  double example_length;
++  double *a;
++#endif
+ } MODEL;
+ 
+ typedef struct quadratic_program {
+@@ -290,6 +306,8 @@
+ long   get_runtime(void);
+ int    space_or_null(int);
+ void   *my_malloc(size_t); 
++void   *my_realloc(void *, size_t);  /* thb - added for mex */
++void   my_free(void *ptr); 
+ void   copyright_notice(void);
+ # ifdef _MSC_VER
+    int isnan(double);
