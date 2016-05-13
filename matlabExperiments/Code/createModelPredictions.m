@@ -5,11 +5,11 @@
 % N models are create using this strategy.
 
 %% Parameters
-N = 1; % N models are created
+N = 10; % N models are created
 DatasetName = 'bibtex';
 k = 5;    % k fold CV is done
 beta = 1;
-expTotal = 1; % Num of experiments
+expTotal = 5; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
 addpath(libSVMPath);
 Folder = '../Output/modelsCV/';
@@ -54,7 +54,7 @@ for expNum = 1 : expTotal
         GammaArr = zeros(labelCount, 1);
         predictionLabels = zeros(instanceCount, labelCount);
         fMArr = zeros(labelCount, 1);
-        for l = 1 : labelCount
+        parfor l = 1 : labelCount
             disp(strcat('label ', num2str(l)));
             predictionLabel = zeros(instanceCount, 1);
             %CArr(l) = -1; GammaArr(l) = -5; 
@@ -79,16 +79,16 @@ for expNum = 1 : expTotal
                             nzRow = 1;
                         end
                         % train SVM
-                        tic
-                        fitcsvm([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV]);
-                        toc
-                        break;
-                        %model = trainRbfSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], c, g);
+                        %tic
+                        %fitcsvm([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV]);
+                        %toc
+                        %break;
+                        model = trainRbfSVM([trainDataCV(nzRow, :); trainDataCV], [1; trainLabelCV], c, g);
                         
                         
                         % prediction for training data
                         %[predictionLabelTrn, accuracyTrn, ~] = svmpredict(trainLabelCV, trainDataCV, model);
-                        %[predictionLabelCV, accuracyCV, ~] = svmpredict(testLabelCV, testDataCV, model);
+                        [predictionLabelCV, accuracyCV, ~] = svmpredict(testLabelCV, testDataCV, model);
                         f = findFScore(predictionLabelCV, testLabelCV, beta);
                         fAvg = fAvg + f;
                         temp = zeros(instanceCount, 1);
@@ -137,3 +137,4 @@ end
 
 
 fprintf(fId, 'Done predictions for dataset %s\n', DatasetName);
+exit;
