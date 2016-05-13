@@ -6,14 +6,14 @@
 
 %% Parameters
 N = 1; % N models are created
-DatasetName = 'rcv1subset1';
+DatasetName = 'bibtex';
 k = 5;    % k fold CV is done
 beta = 1;
 expTotal = 1; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
 addpath(libSVMPath);
 Folder = '../Output/modelsCV/';
-fId = fopen(strcat(Folder, 'outputs.txt'), 'a');
+fId = fopen(strcat(Folder, 'outputs_', DatasetName ,'.txt'), 'a');
 fprintf(fId, '\n-----------------------------------------------------------\n');
 fprintf(fId, 'Dataset = %s\n', DatasetName);
 %% loading the data from the dataset
@@ -54,13 +54,13 @@ for expNum = 1 : expTotal
         GammaArr = zeros(labelCount, 1);
         predictionLabels = zeros(instanceCount, labelCount);
         fMArr = zeros(labelCount, 1);
-        parfor l = 1 : 1
+        for l = 1 : labelCount
             disp(strcat('label ', num2str(l)));
             predictionLabel = zeros(instanceCount, 1);
             %CArr(l) = -1; GammaArr(l) = -5; 
             fMax = 0;
-            lowC = 5; highC = 5; % 3, 8
-            lowG = 2 - log2(featureCount); highG = 2 - log2(featureCount); % 2,4
+            lowC = 3; highC = 8; % 3, 8
+            lowG = 2 - log2(featureCount); highG = 4 - log2(featureCount); % 2,4
             
             bestC = lowC; bestG = lowG;
             for c = lowC : highC             % from -1 to 10
@@ -126,6 +126,8 @@ for expNum = 1 : expTotal
             fprintf(fId, 'F1 score for label %d. CV FMeasure = %f\n', l, fMArr(l));
         end
         fprintf(fId, 'Accuracy = %f, F1 Score = %f\n', accuracy, fMeasure);
+        dlmwrite([Folder, DatasetName, '_gamma.txt'], GammaArr);
+        dlmwrite([Folder, DatasetName, '_c.txt'], CArr);
         toc
     end
     
@@ -133,5 +135,5 @@ for expNum = 1 : expTotal
 
 end
 
+
 fprintf(fId, 'Done predictions for dataset %s\n', DatasetName);
-exit;
