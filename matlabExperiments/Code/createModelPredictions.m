@@ -59,12 +59,12 @@ for expNum = 1 : expTotal
             predictionLabel = zeros(instanceCount, 1);
             %CArr(l) = -1; GammaArr(l) = -5; 
             fMax = 0;
-            lowC = 3; highC = 8; % 3, 8
-            lowG = 2 - log2(featureCount); highG = 4 - log2(featureCount); % 2,4
+            lowC = 4; highC = 8; % 3, 8
+            lowG = 3 - log2(featureCount); highG = 3 - log2(featureCount); % 2,4
             
             bestC = lowC; bestG = lowG;
-            for c = lowC : highC             % from -1 to 10
-                for g = lowG : highG         % from -5 to -1
+            for c = lowC : 4 : highC             % from -1 to 10
+                for g = lowG : 1 : highG         % from -5 to -1
                     fAvg = 0;
                     predictionLabelTemp = zeros(instanceCount, 1);
                     for i = 1 : k                    
