@@ -5,11 +5,11 @@
 % N models are create using this strategy.
 
 %% Parameters
-N = 1; % N models are created
+N = 10; % N models are created
 DatasetName = 'slashdot';
 k = 5;    % k fold CV is done
 beta = 1;
-expTotal = 1; % Num of experiments
+expTotal = 5; % Num of experiments
 libSVMPath = '../../libsvm-3.21/matlab';
 addpath(libSVMPath);
 Folder = '../Output/modelsCV/';
@@ -59,8 +59,8 @@ for expNum = 1 : expTotal
             predictionLabel = zeros(instanceCount, 1);
             %CArr(l) = -1; GammaArr(l) = -5; 
             fMax = 0;
-            lowC = 3; highC = 8; % 3, 8
-            lowG = 2 - log2(featureCount); highG = 4 - log2(featureCount); % 2,4
+            lowC = 2; highC = 7; % 3, 8
+            lowG = 1 - log2(featureCount); highG = 3 - log2(featureCount); % 2,4
             
             bestC = lowC; bestG = lowG;
             for c = lowC : 1 : highC             % from -1 to 10
