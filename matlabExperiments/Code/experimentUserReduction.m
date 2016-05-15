@@ -4,15 +4,16 @@
 % and bottom of the instances.
 
 %% Parameters
-experimentTotal = 9;    % Number of experiments
+experimentTotal = 5;    % Number of experiments
 N = 10;                 % count of models for each experiment
-DatasetName = 'bibtex';
+DatasetName = 'slashdot';
 Folder = '../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/';
 alpha = 1;
+%fId = fopen(strcat(Folder, 'userReductionOutput.txt'), 'a');
+fprintf('\n--------------------------------------\n');
+fprintf('Dataset %s\n', DatasetName);
 
-
-
-for expNum = 1 : 5%experimentTotal
+for expNum = 1 : experimentTotal
     % for each experiment this is repeated
     fprintf('Experiment Number = %d\n', expNum);
     models = ones(N, 1);
@@ -116,3 +117,4 @@ for expNum = 1 : 5%experimentTotal
     end
     disp(capacityMatrix);
 end
+%exit;
