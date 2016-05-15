@@ -6,14 +6,15 @@
 %% Parameters
 experimentTotal = 5;    % Number of experiments
 N = 10;                 % count of models for each experiment
-DatasetName = 'slashdot';
+DatasetName = 'medical';
 Folder = '../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/';
 alpha = 1;
 %fId = fopen(strcat(Folder, 'userReductionOutput.txt'), 'a');
 fprintf('\n--------------------------------------\n');
 fprintf('Dataset %s\n', DatasetName);
 
-for expNum = 1 : experimentTotal
+%% Loop for experiment
+for expNum = 6 : 10
     % for each experiment this is repeated
     fprintf('Experiment Number = %d\n', expNum);
     models = ones(N, 1);
@@ -40,7 +41,7 @@ for expNum = 1 : experimentTotal
 
 
         % preprocess the data to remove unpredicted instances 
-        d = sum(P~=0,2);
+        d = sum(P~=0, 2);
         Inst = [1:nInst]';
 
         P = P(d~=0, :);         % filter unpredicted rows

@@ -6,13 +6,13 @@
 %% Parameters
 experimentTotal = 1;    % Number of experiments
 N = 10;                 % count of models for each experiment
-DatasetName = 'enron';
+DatasetName = 'slashdot';
 Folder = '../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/'; 
 alpha = 1;
 
 
 
-for expNum = 1 : 1%experimentTotal
+for expNum = 1 : 10%experimentTotal
     % for each experiment this is repeated
     fprintf('Experiment Number = %d\n', expNum);
     
