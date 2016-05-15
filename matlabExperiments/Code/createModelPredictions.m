@@ -6,7 +6,7 @@
 
 %% Parameters
 N = 10; % N models are created
-DatasetName = 'slashdot';
+DatasetName = 'medical';
 k = 5;    % k fold CV is done
 beta = 1;
 expTotal = 5; % Num of experiments
