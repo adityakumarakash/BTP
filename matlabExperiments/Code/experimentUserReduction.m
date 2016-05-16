@@ -5,7 +5,7 @@
 
 %% Parameters
 experimentTotal = 5;    % Number of experiments
-N = 10;                 % count of models for each experiment
+N = 12;                 % count of models for each experiment
 DatasetName = 'medical';
 Folder = '../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/';
 alpha = 1;
@@ -19,7 +19,7 @@ for expNum = 6 : 10
     fprintf('Experiment Number = %d\n', expNum);
     models = ones(N, 1);
     modelIndex = [1:N]';
-    maxIteration = 4;
+    maxIteration = 3;
     capacityMatrix = zeros(N, maxIteration);
     for iteration = 1 : maxIteration
         %% Read the data
@@ -55,7 +55,7 @@ for expNum = 6 : 10
 
         A = zeros(nInst, nClasses * nModels);   % Connection matrix with -1 replaced by 0
         A = P;
-        %P(P==0) = -1;
+        P(P==0) = -1;
         lId = A(:,:) == -1;
         A(lId) = 0;
 
@@ -89,6 +89,7 @@ for expNum = 6 : 10
         userConfidenceMacro = zeros(nModels, 1);
         for i = 1 : nModels
             userConfidenceMacro(i) = findUserConfidenceMacro(L, P(:, (i - 1) * nClasses + 1 : i * nClasses));
+            %disp(userConfidenceMacro(i));
         end
 
         userConfidenceMean = zeros(nModels, 1);

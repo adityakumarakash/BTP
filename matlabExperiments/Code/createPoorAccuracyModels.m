@@ -1,17 +1,17 @@
-%% This script is for generating different models using CV on train data
+%% This script is for generating different manual labelers with different ability on different labels
 % The models are trained on different dataset. 
+% First 1 to 5 models are kept are manual labelers in each dataset.
+
 
 %% setup configuration
-N = 10;                     % N models are created
+N = 5;                     % N models are created
 DatasetName = 'medical';
-k = 5;                     % k fold CV is done for training the models
-experimentTotal = 1;
-libSVMPath = '../../libsvm-3.21/matlab';
-config.libSVMPath = libSVMPath;
-addpath(libSVMPath);
+experimentTotal = 5;
+
 Folder = '../Output/modelsBias/';
 fId = fopen(strcat(Folder, 'outputs_', DatasetName, '.txt'), 'a');
 fprintf(fId, '\n-----------------------------------------------------\n');
+
 
 %% loading the data from the dataset
 [trainData, trainLabel, testData, testLabel] = loadDataset(DatasetName);
@@ -20,17 +20,22 @@ fprintf(fId, '\n-----------------------------------------------------\n');
 % trainLabel = trainLabel(100 : 200, :);
 % testLabel = testLabel(100 : 200, :);
 
+
 %% Partition data for training each of the models
-trainDataModels = cell(N, 1);
-trainLabelModels = cell(N, 1);
-fraction = 0.9;
-trainInst = int32(size(trainData, 1));
-totalInstance = size(trainData, 1);
+data = [trainData; testData];
+labels = [trainlabel; testLabels];
+labelCount = size(labels, 2);
+instanceCount = size(labels, 1);
+
 
 for expNum = 1 : experimentTotal
 	% create subset of Labels for each model
-	for i = 1 : N
+	for l = 1 : labelCount
+		lData = data;
+		lLabels = labels(:, l);
 				
+		
+						
 
     for i = 1 : N
         index = randsample(totalInstance, trainInst);
