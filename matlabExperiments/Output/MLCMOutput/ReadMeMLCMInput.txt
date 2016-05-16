@@ -16,5 +16,6 @@ InputFile present in
 /BTP/matlabExperiments/Data/Output/modelsCV/<DatasetName>_model_<modelNum>.y.<ExperimentNum>
 
 Output format
-<DatasetName>_U.<experimentNum>
-<DatasetName>_Q.<experimentNum>
+<DatasetName>_U.<experimentNum> For the U output
+<DatasetName>_Q.<experimentNum> For the Q output
+<DatasetName>_P.<experimentNum> For the combined prediction matrix, A matrix with 0's replaced by -1, nInstances x (nModels*nClasses)
