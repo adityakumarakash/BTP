@@ -1,7 +1,7 @@
 %% Parameters
 experimentTotal = 5;    % Number of experiments
 N = 10;                 % count of models for each experiment
-DatasetName = 'medical';
+DatasetName = 'bibtex';
 Folder = '../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/';
 OutputFolder = '../Output/MLCMOutput/';
 alpha = 1;
@@ -9,7 +9,7 @@ fprintf('\n--------------------------------------\n');
 fprintf('Dataset %s\n', DatasetName);
 
 %% Loop for experiment
-for expNum = 6 : 10
+for expNum = 1 : 5
     % for e ach experiment this is repeated
     fprintf('Experiment Number = %d\n', expNum);
     P=load([Folder, DatasetName,'_model_1.y.1']);
@@ -28,13 +28,12 @@ for expNum = 6 : 10
     % preprocess the data to remove unpredicted instances 
     d = sum(P~=0, 2);
     Inst = [1:nInst]';
-
+    oldInst = nInst;
     P = P(d~=0, :);         % filter unpredicted rows
     OL = OL(d~=0, :);       % filter unpredicted rows
     Inst = Inst(d~=0, :);
     OL(OL == 0) = -1;
 
-    oldInst = nInst;
     nInst = size(P, 1);
 
 
@@ -54,9 +53,12 @@ for expNum = 6 : 10
     %[U, Q] = MLCMr(nInst, nClasses, nModels, A, alpha, B);
 
     % Closed form values of U and Q
-    [U, Q] = MLCMrClosedForm(nInst, nClasses, nModels, A, alpha, B);
+    [Utemp, Qtemp] = MLCMrClosedForm(nInst, nClasses, nModels, A, alpha, B);
+    U = zeros(oldInst, size(Utemp, 2));
+    U(Inst, :) = Utemp;
+    Q = Qtemp;
     fprintf('MLCM prediction done\n');
-    dlmwrite([OutputFolder, DatasetName, '_U.', expNum], U);
-    dlmwrite([OutputFolder, DatasetName, '_Q.', expNum], Q);        
-
+    dlmwrite([OutputFolder, DatasetName, '_U.', num2str(expNum)], U);
+    dlmwrite([OutputFolder, DatasetName, '_Q.', num2str(expNum)], Q);        
+    
 end
