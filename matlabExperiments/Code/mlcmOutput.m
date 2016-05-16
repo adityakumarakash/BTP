@@ -10,14 +10,15 @@ fprintf('Dataset %s\n', DatasetName);
 
 %% Loop for experiment
 for expNum = 6 : 10
-    % for each experiment this is repeated
+    % for e ach experiment this is repeated
     fprintf('Experiment Number = %d\n', expNum);
-    for j=1:N
-        if models(j) == 1
-            i = i + 1;
-            temp = load([Folder, DatasetName, '_model_', int2str(j), '.y.', int2str(expNum)]);
-            P(:,(i-1)*nClasses+1:i*nClasses) = predictionConvert(temp);
-        end
+    P=load([Folder, DatasetName,'_model_1.y.1']);
+    [nInst, nClasses] = size(P);
+    nModels = N;
+    P=zeros(nInst, nClasses*nModels);	% connection matrix
+    for i=1:N
+        temp = load([Folder, DatasetName, '_model_', int2str(i), '.y.', int2str(expNum)]);
+        P(:,(i-1)*nClasses+1:i*nClasses) = predictionConvert(temp);        
     end
 
     % load ground truth
