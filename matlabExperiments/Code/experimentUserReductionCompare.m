@@ -5,8 +5,8 @@
 
 %% Parameters
 experimentTotal = 5;    % Number of experiments
-N = 10;                 % count of models for each experiment
-DatasetName = 'enron';
+N = 20;                 % count of models for each experiment
+DatasetName = 'bibtex';
 Folder = '../Output/modelsCV/';
 alpha = 1;
 %fId = fopen(strcat(Folder, 'userReductionOutput.txt'), 'a');
@@ -18,7 +18,9 @@ for expNum = 1 : 5
     % for each experiment this is repeated
     fprintf('\nExperiment Number = %d\n', expNum);
     models = ones(N, 1);
+    models(1:15) = 0;
     modelIndex = [1:N]';
+    modelIndex = modelIndex(models==1);
     maxIteration = 2;
     capacityMatrix = zeros(N, maxIteration);
     for iteration = 1 : maxIteration
@@ -125,12 +127,14 @@ for expNum = 1 : 5
     %% Random removal of models
 
     
-    for expIteration = 1 : 5
+    for expIteration = 16 : N
         fprintf('expIteration = %d\n', expIteration);
         maxIteration = 2;
         capacityMatrix = zeros(N, maxIteration);
         models = ones(N, 1);
+        models(1 : 15) = 0;
         modelIndex = [1:N]';
+        modelIndex = modelIndex(models == 1);
         for iteration = 1 : maxIteration
             %% Read the data
             P=load([Folder, DatasetName,'_model_1.y.1']);
@@ -222,7 +226,8 @@ for expNum = 1 : 5
             % We remove the bottom k users and see if there is improvement
             k = 1;
             index = randperm(size(userCapacity, 1));
-            modelsRemoved = modelIndex(index(1:k));
+            %modelsRemoved = modelIndex(index(1:k));
+            modelsRemoved = expIteration;
             fprintf('Removed Model = ');
             disp(modelsRemoved);
             modelIndex = sort(modelIndex(index(k+1:end)));
