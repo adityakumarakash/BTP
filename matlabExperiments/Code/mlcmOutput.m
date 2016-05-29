@@ -1,7 +1,7 @@
 %% Parameters
 experimentTotal = 5;    % Number of experiments
 N = 10;                 % count of models for each experiment
-DatasetName = 'bibtex';
+DatasetName = 'enron';
 Folder = '../Output/modelsCV/';%'../ICDMDATA/';%'../Output/models/';
 OutputFolder = '../Output/MLCMOutput/';
 alpha = 1;
@@ -62,3 +62,4 @@ for expNum = 1 : 5
     dlmwrite([OutputFolder, DatasetName, '_Q.', num2str(expNum)], Q);        
     
 end
+exit;
